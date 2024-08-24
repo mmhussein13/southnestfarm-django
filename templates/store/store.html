@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!--banner start-->
+<section class="w-100 clearfix bannerSec" id="bannerSec" style="background-image: url('{% static 'images/inner-banner1.png' %}');">
+   <div class="container">
+      <div class="bannerContent">
+         {% if 'search' in request.path %}
+         <h1>Search Result</h1>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+               <li class="breadcrumb-item active">Shop</li>
+            </ul>
+         {% else %}
+         <h1>Shop</h1>
+         <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Shop</li>
+         </ul>
+         {% endif %}
+      </div>
+   </div>   
+</section>
+<!--banner end-->
+   <!--shop product section start-->
+
+<!--shop product section start-->
+<section class="w-100 clearfix shopSection" id="shopSection">
+   <div class="container">
+      <div class="form-incline">
+         <span class="mr-md-auto"><b>{{ product_count }}<b> items found </span>
+         </div><br>
+      <div class="shopInner">
+         <div class="shopProductCard">
+            <div class="row">
+               {% if products %}
+               {% for product in products %}
+               <div class="col-sm-6 col-md-6 col-xl-3">
+                  <div class="owlSlideItem">
+                     <div class="owlSlideItemImg">
+                        <div class="sliderIconMenu">
+                           <div class="sliderHotBadge">
+                              <a href="javascript:void(0);" class="badge bg-danger">Hot</a>
+                           </div>
+                           <div class="heartIcon">
+                              <a href="javascript:void(0);" class="heart">
+                                 <i class="fa fa-heart" aria-hidden="true"></i>
+                              </a>
+                           </div>
+                        </div>
+                        <a href="{{ product.get_url }}">
+                           <img src="{{ product.images.url }}" alt="" class="img-fluid">
+                        </a>
+                        <a href="{{ product.get_url}}" class="addToCart"><img src="{% static 'images/icon/add-to-cart.png' %}" alt="cart"
+                              class="img-fluid"></a>
+                     </div>
+                     <div class="owlSlideItemContent">
+                        <a href="{{ product.get_url }}">
+                           <div class="owlProductHeading">
+                              <h4>{{ product.product_name }}</h4>
+                           </div>
+                        </a>
+                        <div class="productPrice">
+                           <ins>Ugs {{ product.price }}</ins> 
+                        </div>
+                        <div class="ratingStar">
+                           <i class="fa fa-star fill" aria-hidden="true"></i>
+                           <i class="fa fa-star fill" aria-hidden="true"></i>
+                           <i class="fa fa-star fill" aria-hidden="true"></i>
+                           <i class="fa fa-star unfill" aria-hidden="true"></i>
+                           <i class="fa fa-star unfill" aria-hidden="true"></i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %} 
+               {% else %}
+               <div>
+                  <h2>No results found. Please try again.</h2>
+               </div>
+               {% endif %}
+         </div>
+         <div class="paginationGroup">
+            {% if products.has_other_pages %}
+            <ul class="pagination">
+               {% if products.has_previous %}
+               <li class="page-item"><a class="page-link pageLinkPrev" href="?page={{ products.previous_page_number }}"><img src="{% static 'images/icon/arrow-left.png' %}" alt="arrow left" class="img-fluid"></a></li>
+               {% else %}
+               <li class="page-item disabled"><a class="page-link pageLinkPrev" href="#"><img src="{% static 'images/icon/arrow-left.png' %}" alt="arrow left" class="img-fluid"></a></li>
+               {% endif %}
+
+               {% for i in products.paginator.page_range %}
+                  {% if products.number == i %}
+                     <li class="page-item active"><a class="page-link active" href="#">{{ i }}</a></li>
+                  {% else %}
+                     <li class="page-item"><a class="page-link active" href="?page={{ i }}">{{ i }}</a></li>   
+                  {% endif %}
+               {% endfor %}
+               
+               {% if products.has_next %}
+                  <li class="page-item"><a class="page-link pageLinkNext" href="?page={{ products.next_page_number }}"><img src="{% static 'images/icon/arrow-right.png' %}" alt="arrow right" class="img-fluid"></a></li>
+               {% else %}
+                  <li class="page-item disabled"><a class="page-link pageLinkNext" href="#"><img src="{% static 'images/icon/arrow-right.png' %}" alt="arrow right" class="img-fluid"></a></li>
+               {% endif %}
+            </ul>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+</section>
+<!--shop product end-->
+{% endblock content %}

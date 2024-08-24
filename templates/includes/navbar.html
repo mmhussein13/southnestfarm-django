@@ -1,0 +1,374 @@
+{% load static %}
+
+<body>
+    <!--cursor-->
+    <div class='cursor cursor1'></div> 
+    <div class='cursor cursor2'></div> 
+    <!--Preloader start-->
+    <div id="preloader">
+    <div id="status">
+        <div class="u-loading">
+            <div class="u-loading__symbol">
+                <img src="{% static 'images/logo/logo5.png' %}" alt="loader" class="img-fluid">
+            </div>
+        </div>
+        <div class="loader" id="dotsLoader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    </div>
+    <!--Preloader end-->
+    <!--header start-->
+    <header class="w-100 clearfix header headerOne" id="headerOne">
+    <!--top header-->
+    <div class="topHeader">
+        <div class="container">
+            <div class="topHeaderInner">
+                <div class="mobile boxGroupHeader">
+                <a href="javascript:void(0);">
+                    <div class="flexGroupHeader">
+                        <div class="icon">
+                            <img src="{% static 'images/icon/phone.png' %}" alt="icon" class="img-fluid">
+                        </div>
+                        <div class="iconTxt">
+                            <span>+27 (83)7288948</span>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                <div class="mail boxGroupHeader">
+                <a href="javascript:void(0);">
+                    <div class="flexGroupHeader">
+                        <div class="icon">
+                            <img src="{% static 'images/icon/mail.png' %}" alt="icon" class="img-fluid">
+                        </div>
+                        <div class="iconTxt">
+                            <span>mmhussein13@gmail.com</span>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                <div class="language boxGroupHeader ms-auto">
+                <div class="flexGroupHeader">
+                    <div class="icon">
+                        <img src="{% static 'images/icon/lang.png' %}" alt="icon" class="img-fluid">
+                    </div>
+                    <div class="iconTxt">
+                        <select class="form-select">
+                            <option>English</option>
+                            <option>Arabic</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--main header-->
+    <div class="mainHeader">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo/southnestfarm.png' %}" alt="loader" class="img-fluid"></a>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{% url 'home' %}" data-bs-toggle="dropdown"><span>Projects</span> <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'home' %}">Poultry</a></li>
+                            <li><a class="dropdown-item" href="home3.html">Home 02 ( Fish )</a></li>
+                            <li><a class="dropdown-item" href="home4.html">Home 03 ( Sheep )</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown">Pages <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="page-not-found.html">404 Page</a></li>
+                            <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown">Services <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="our-service.html">All Services</a></li>
+                            <li><a class="dropdown-item" href="actigen.html">Actigen</a></li>
+                            <li><a class="dropdown-item" href="broiler-breeder.html">Broiler Breeder</a></li>
+                            <li><a class="dropdown-item" href="layer-breeders.html">Layer Breeders</a></li>
+                            <li><a class="dropdown-item" href="poultry-feed.html">Poultry Feed</a></li>
+                        </ul>
+                    </li>
+                    <!--<li class="nav-item dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown">Gallery <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="gallery-2-column.html">Gallery 2 Column</a></li>
+                            <li><a class="dropdown-item" href="gallery-3-column.html">Gallery 3 Column</a></li>
+                            <li><a class="dropdown-item" href="video-gallery.html">Video Gallery</a></li>
+                            <li><a class="dropdown-item" href="video-single.html">Video Single</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown">Blog <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="blog.html">Blog Category</a></li>
+                            <li><a class="dropdown-item" href="blog-with-sidebar.html">Blog With Sidebar </a>
+                            </li>
+                            <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{% url 'store' %}" data-bs-toggle="dropdown">Shop <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'store' %}">Our Shop</a></li>
+                            <li><a class="dropdown-item" href="{{ product.get_url }}">Shop Single</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cart' %}">Shopping Cart</a></li>
+                            <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" data-bs-toggle="dropdown"><span>Shortcode</span> <i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <div class="dropdown-menu dropdownMegaMenu">
+                            <div class="dropdownRow">
+                            <div class="dropdownCol">
+                                <ul class="dropdownUl nav flex-column">
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_accordion.html">Accordion</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_alert.html">Alert</a>
+                                    </li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_button.html">Button</a>
+                                    </li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_client.html">Client</a>
+                                    </li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_counter.html">Counter</a>
+                                    </li>
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_feature_with_icon.html">Feature with Icon</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdownCol">
+                                <ul class="dropdownUl nav flex-column">
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_feature_with_images.html">Feature with Images</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_form.html">Form</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_heading.html">Heading</a>
+                                    </li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="login.html">List</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_portfolio.html">Portfolio</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_pricing-table.html">Pricing Table</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdownCol">
+                                <ul class="dropdownUl nav flex-column">
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_social-icon.html">Social
+                                        Icon</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_tab.html">Tab</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink" href="sho_team.html">Team</a></li>
+                                    <li class="dropdownItem"><a class="dropdownLink"
+                                        href="sho_testimonials.html">Testimonials</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdownCol">
+                                <div class="dropdownColImg d-none d-xl-block">
+                                    <img src="{% static 'images/img15.png' %}" alt="menu-img" class="img-fluid">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item loginBtn d-block d-md-none">
+                        <div class="btnGroup">
+                            <a class="nav-link btn" href="login.html">Log In</a>
+                            <a class="nav-link btn" href="login.html">Register</a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+                <div class="rightMenu">
+                <ul class="nav">
+                    <li class="nav-item searchBtn">
+                        <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/search.png' %}" alt="loader"
+                            class="img-fluid"></a>
+                    </li>
+                    <li class="nav-item cardBtn">
+                        <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/card.png' %}" alt="loader"
+                            class="img-fluid"><span class="badge rounded-pill">{{ cart_count }}</span></a>
+                    </li>
+                    <li class="nav-item loginBtn d-none d-md-block">
+                        <div class="btnGroup">
+                            <a class="nav-link btn" href="login.html">Log In</a>
+                            <a class="nav-link btn" href="login.html">Register</a>
+                        </div>
+                    </li>
+                    <li class="nav-item toggleBtn">
+                        <a class="nav-link navbar-toggler" href="javascript:void(0);" data-bs-toggle="collapse"
+                            data-bs-target="#collapsibleNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--overlay-->
+    <div class="widgetOverlay"></div>
+    </header>
+    <!--header end-->
+    <!--search box start-->
+    <div class="searchBox searchBox1">
+    <div class="container">
+        <form action="{% url 'search' %}" class="search" method="GET">
+        <div class="searchBoxInner">
+            <div class="searchHeading">
+                <h4>Search Our Site</h4>
+            </div>
+            <div class="searchInput">
+                <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="keyword">
+                <button href="javascript:void(0);" class="input-group-text searchButton" type="submit"><span>Search</span> <img
+                        src="{% static 'images/icon/icon-right.png' %}" alt="btn-arrow" class="img-fluid"></button>
+                </div>
+            </div>
+            <div class="quickSearch">
+                <p><span>Quick Search:</span>Poultry, Fish Feed, Hen Feeds</p>
+            </div>
+        </form>
+        </div>
+    </div>
+    </div>
+    <!--search box end-->
+    <!--cart side box end-->
+    <div class="cartSideBox cartSideBox1" id="cartSideBox">
+    <div class="cartSideBoxInner">
+        <div class="shoppingCart d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Shopping Cart</h4>
+            <a href="#" class="closeCart"><img src="{% static 'images/icon/close.png' %}" alt="close"
+                class="img-fluid"></a>
+        </div>
+        <span class="itemsCounter">{{ cart_count }} items</span>
+        <div class="allItems">
+            {% for cart_item in cart_items %}
+            <div class="singleItems">
+                <div class="itemImage">
+                <img src="{{ cart_item.product.images.url }}" alt="" class="img-fluid">
+                </div>
+                <div class="itemContent">
+                <div class="itemTitlePriceGroup">
+                    <div class="itemTitle">
+                        <h5>{{ cart_item.product_name }}</h5>
+                    </div>
+                    <div class="itemPrice">
+                        <ins>Ugs {{ cart_item.product.price }}</ins> 
+                    </div>
+                </div>
+                <div class="addItems">
+                    <div class="incrementItems">
+                        <div class="input-group qty-container">
+                            <a href="{% url 'remove_cart' cart_item.product_id %}" class="input-group-text qty-btn-minus">-</a>
+                            <input type="text" class="form-control input-qty" placeholder="" value="{{ product_count }}">
+                            <a href="{% url 'add_cart' cart_item.product_id %}" class="input-group-text qty-btn-plus">+</a>
+                        </div>
+                    </div>
+                    <div class="removeItems">
+                        <a href="{% url 'remove_cart_item' cart_item.product_id %}" class="removeItem">REMOVE</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="singleItems">
+                
+                <!--<div class="itemImage">
+                <img src="{% static 'images/img24.png' %}" alt="close" class="img-fluid">
+                </div>
+                <div class="itemContent">
+                <div class="itemTitlePriceGroup">
+                    <div class="itemTitle">
+                        <h5>Organic Scratch Grains</h5>
+                    </div>
+                    <div class="itemPrice">
+                        <ins>$45</ins> <del>60</del>
+                    </div> 
+                </div> -->
+                <div class="addItems">
+                    <div class="incrementItems">
+                        <!--<div class="input-group qty-container">
+                            <a href="javascript:void(0);" class="input-group-text qty-btn-minus">-</a>
+                            <input type="text" class="form-control input-qty" placeholder="" value="0">
+                            <a href="javascript:void(0);" class="input-group-text qty-btn-plus">+</a>
+                        </div> -->
+                    </div>
+                    <!--<div class="removeItems">
+                        <a href="javascript:void(0);" class="removeItem">REMOVE</a>
+                    </div> -->
+                    
+                </div>
+                </div>
+            </div>
+        </div> 
+        <div class="priceTbl">
+            <div class="priceBody">
+                <div class="priceTr">
+                <div class="priceTd">
+                    <h6>Subtotal</h6>
+                </div>
+                <div class="priceTd text-end">
+                    <span>Ugs {{ cart_item.sub_total }}</span>
+                </div>
+                </div>
+                <div class="priceTr">
+                <div class="priceTd">
+                    <h6>Discount</h6>
+                </div>
+                <div class="priceTd text-end">
+                    <span>-Ugs 0</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="priceFoot">
+                <div class="priceTr">
+                <div class="priceTd">
+                    <h5>Total</h5>
+                </div>
+                <div class="priceTd text-end">
+                    <span>Ugs {{ total }}</span>
+                </div>
+                </div>
+            </div>
+        </div> 
+        <div class="checkoutTaxIncluded">
+            <p>Tax included and shipping calculated at checkout</p>
+            <div class="form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember">I agree with <a
+                    href="javascript:void(0);">Terms & Conditions</a>
+                </label>
+            </div>
+        </div>
+        <div class="cartBtnGroup">
+            <a class="btnCustom3 btn-1 hover-slide-down" href="javascript:void(0);">
+                <span>Checkout <img src="{% static 'images/icon/arrow-right.png' %}" alt="right" class="img-fluid"></span>
+            </a>
+            <a class="btnCustom4 btn-1 hover-slide-down" href="{% url 'cart' %}">
+                <span>View Cart <img src="{% static 'images/icon/arrow-right.png' %}" alt="right" class="img-fluid"></span>
+            </a>
+        </div>
+    </div>
+    </div>
+    <!--cart side box end-->
