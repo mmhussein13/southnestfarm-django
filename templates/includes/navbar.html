@@ -19,7 +19,7 @@
         </div>
     </div>
     </div>
-    <!--Preloader end-->
+    <!--Preloader end->
     <!--header start-->
     <header class="w-100 clearfix header headerOne" id="headerOne">
     <!--top header-->
@@ -88,7 +88,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
                             <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                            <li><a class="dropdown-item" href="login.html">Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'login'%}">Login</a></li>
                             <li><a class="dropdown-item" href="page-not-found.html">404 Page</a></li>
                             <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
                         </ul>
@@ -192,8 +192,8 @@
                     </li>
                     <li class="nav-item loginBtn d-block d-md-none">
                         <div class="btnGroup">
-                            <a class="nav-link btn" href="login.html">Log In</a>
-                            <a class="nav-link btn" href="login.html">Register</a>
+                            <a class="nav-link btn" href="{% url 'login' %}">Log In</a>
+                            <a class="nav-link btn" href="{% url 'register' %}">Register</a>
                         </div>
                     </li>
                 </ul>
@@ -210,8 +210,8 @@
                     </li>
                     <li class="nav-item loginBtn d-none d-md-block">
                         <div class="btnGroup">
-                            <a class="nav-link btn" href="login.html">Log In</a>
-                            <a class="nav-link btn" href="login.html">Register</a>
+                            <a class="nav-link btn" href="{% url 'login' %}">Log In</a>
+                            <a class="nav-link btn" href="{% url 'register' %}">Register</a>
                         </div>
                     </li>
                     <li class="nav-item toggleBtn">

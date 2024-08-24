@@ -1,0 +1,222 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!-- 
+Template Name: SouthNest Farm
+Version: 1.0.0
+Author: Hussein M Migadde
+
+-->
+<!--[if IE 8]> 
+<html lang="en" class="ie8 no-js">
+<![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx" dir="ltr">
+<!--[endif]-->
+
+<head>
+<meta charset="utf-8">
+<title>SouthNest</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.cs' %}s">
+<link rel="stylesheet" type="text/css" href="{% static 'css/animate.cs' %}s">
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/grt-youtube-popup.cs' %}s">
+<link rel="stylesheet" type="text/css" href="{% static 'css/fancybox.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'images/logo/favicon3.png' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <!--cursor-->
+   <div class='cursor cursor1'></div> 
+   <div class='cursor cursor2'></div> 
+   <!--Preloader start-->
+   <div id="preloader">
+   <div id="status">
+       <div class="u-loading">
+           <div class="u-loading__symbol">
+               <img src="{% static 'images/logo/logo5.png' %}" alt="loader" class="img-fluid">
+           </div>
+       </div>
+       <div class="loader" id="dotsLoader">
+           <span></span>
+           <span></span>
+           <span></span>
+       </div>
+   </div>
+   </div>
+   <!--Preloader end-->
+   <!--error start-->
+   <section class="w-100 clearfix loginSec" id="loginSec">
+      <div class="loginSecRow">
+         <div class="loginSecCol loginSecCol1">
+            <div class="loginSecColInner">
+               <div class="loginLogo">
+                  <img src="{% static 'images/logo/logo-footer.png' %}" alt="logo" class="img-fluid">
+               </div>
+               <div class="loginImage">
+                  <img src="{% static 'images/img26.png' %}" alt="logo" class="img-fluid">
+               </div>
+            </div>
+         </div>
+         <div class="loginSecCol loginSecCol2" style="background-image: url(images/bg-img6.png);">
+            <div class="loginSecColInner">
+               <div class="loginFormBox">
+                  <div class="loginFormGroup">
+                     <div class="loginSecHead">
+                        <div class="commonHeading">
+                           <h4>Welcome Back !</h4>
+                           <p>Welcome Back Please Enter Your Detail To Log In</p>
+                        </div>
+                     </div>
+                     <div class="loginRegisterTab">
+                        <!-- Nav pills -->
+                        <ul class="nav nav-pills">
+                           <li class="nav-item">
+                              <a class="nav-link active" data-bs-toggle="pill" href="{% url 'login' %}">Log In</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" data-bs-toggle="pill" href="{% url 'register' %}">Register</a>
+                           </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                           <div class="tab-pane active" id="login">
+                              <div class="loginTabInner">
+                                 <form action="{% url 'register' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="logFormGroup">
+                                    <label for="loginemail" class="form-label">Email</label>
+                                    <div class="input-group">
+                                    {{ form.first_name }}
+                                       <a href="javascript:void(0)" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-mail.png' %}" alt="mail" class="img-fluid"></a>
+                                    </div>
+                                    </div>
+                                    <div class="logFormGroup">
+                                       <label for="pwd" class="form-label">Password</label>
+                                       <div class="input-group">
+                                          <input type="password" class="form-control border-0" id="pwd" placeholder="Enter Your password" name="pswd">
+                                          <a href="javascript:void(0)" class="input-group-text passwordEye bg-white border-0">
+                                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                          </a>
+                                       </div>
+                                    
+                                    </div>
+                                    <div class="checkFormGroup">
+                                       <div class="form-check">
+                                          <label class="form-check-label">
+                                             <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                                          </label>
+                                       </div>
+                                       <div class="forgotPassword">
+                                          <a href="javascript:void(0);">Forgot Password</a>
+                                       </div>
+                                    </div>
+                                    <div class="checkFormBtn">
+                                       <button type="submit" class="btnCustom5 btn-1 hover-slide-down w-100">
+                                          <span class="justify-content-center">Log In <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span>
+                                       </button>
+                                    </div>
+                                    <div class="checkGoogleBtn">
+                                       <a href="javascript:void(0);">
+                                          <img src="{% static 'images/icon/google.png' %}" alt="google" class="img-fluid">
+                                          <span>Cotinue With Google</span>
+                                       </a>
+                                    </div>
+                                    <div class="signUpGroup">
+                                          <p>Don't Have An Account <a href="javascript:void(0);" class="signUpLink">Sign Up</a></p>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                           <div class="tab-pane fade" id="register">
+                              <div class="registerTabInner">
+                                 <div class="loginTabInner">
+                                    <form>
+                                       <div class="logFormGroup">
+                                          <label for="name" class="form-label">Name</label>
+                                          <div class="input-group">
+                                             <input type="text" class="form-control border-0" id="name" placeholder="Enter Your Name" name="name">
+                                             <a href="javascript:void(0)" class="input-group-text bg-white border-0"><img src="images/icon/outline-user.png" alt="mail" class="img-fluid"></a>
+                                          </div>
+                                       </div>
+                                       <div class="logFormGroup">
+                                          <label for="email" class="form-label">Email</label>
+                                          <div class="input-group">
+                                             <input type="email" class="form-control border-0" id="email" placeholder="Enter Your Email" name="email">
+                                             <a href="javascript:void(0)" class="input-group-text bg-white border-0"><img src="images/icon/outline-mail.png" alt="mail" class="img-fluid"></a>
+                                          </div>
+                                       </div>
+                                       <div class="logFormGroup">
+                                          <label for="registerPassword" class="form-label">Password</label>
+                                          <div class="input-group">
+                                             <input type="password" class="form-control border-0" id="registerPassword" placeholder="Enter Your password" name="pswd">
+                                             <a href="javascript:void(0)" class="input-group-text passwordEye bg-white border-0">
+                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                             </a>
+                                          </div>
+                                       
+                                       </div>
+                                       <div class="checkFormBtn">
+                                          <button type="submit" class="btnCustom5 btn-1 hover-slide-down w-100">
+                                             <span class="justify-content-center">Sign Up <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span>
+                                          </button>
+                                       </div>
+                                       <div class="checkGoogleBtn">
+                                          <a href="javascript:void(0);">
+                                             <img src="{% static 'images/icon/google.png' %}" alt="google" class="img-fluid">
+                                             <span>Cotinue With Google</span>
+                                          </a>
+                                       </div>
+                                       <div class="signUpGroup">
+                                             <p>Already  Have An Account <a href="javascript:void(0);" class="signUpLink">Log In</a></p>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--error end-->
+   <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/contact_form.js' %}"></script>
+<script src="{% static 'js/grt-youtube-popup.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+   <script>
+      $(".passwordEye").click(function() {
+    $('.passwordEye i.fa').toggleClass("fa-eye fa-eye-slash");
+    input = $(this).parent().find("input");
+    if (input.attr("type") == "password") {
+        input.attr("type", "text");
+    } else {
+        input.attr("type", "password");
+    }
+});
+   </script>
+</body>
+
+</html>
