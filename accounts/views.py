@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from .forms import Registrationform
+from .forms import RegistrationForm
+
+
 
 # Create your views here.
 def register(request):
-    form = Registrationform()
+    form = RegistrationForm()
     context = {
         'form': form,
     }

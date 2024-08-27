@@ -38,22 +38,22 @@ Author: Hussein M Migadde
 
 <body>
    <!--cursor-->
-   <div class='cursor cursor1'></div> 
-   <div class='cursor cursor2'></div> 
+   <div class='cursor cursor1'></div>
+   <div class='cursor cursor2'></div>
    <!--Preloader start-->
    <div id="preloader">
-   <div id="status">
-       <div class="u-loading">
-           <div class="u-loading__symbol">
+      <div id="status">
+         <div class="u-loading">
+            <div class="u-loading__symbol">
                <img src="{% static 'images/logo/logo5.png' %}" alt="loader" class="img-fluid">
-           </div>
-       </div>
-       <div class="loader" id="dotsLoader">
-           <span></span>
-           <span></span>
-           <span></span>
-       </div>
-   </div>
+            </div>
+         </div>
+         <div class="loader" id="dotsLoader">
+            <span></span>
+            <span></span>
+            <span></span>
+         </div>
+      </div>
    </div>
    <!--Preloader end-->
    <!--error start-->
@@ -83,25 +83,25 @@ Author: Hussein M Migadde
                         <!-- Nav pills -->
                         <ul class="nav nav-pills">
                            <li class="nav-item">
-                              <a class="nav-link active" data-bs-toggle="pill" href="{% url 'login' %}">Log In</a>
+                              <a class="nav-link active" data-bs-toggle="pill" href="#login">Log In</a>
                            </li>
                            <li class="nav-item">
-                              <a class="nav-link" data-bs-toggle="pill" href="{% url 'register' %}">Register</a>
+                              <a class="nav-link" data-bs-toggle="pill" href="#register">Register</a>
                            </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
                            <div class="tab-pane active" id="login">
                               <div class="loginTabInner">
-                                 <form action="{% url 'register' %}" method="POST">
-                                    {% csrf_token %}
+                                 <!-- BEGIN LOGN FORM -->
+                                 <form action="{% url 'login' %}" method="POST">
                                     <div class="logFormGroup">
-                                       <label for="loginemail" class="form-label">Email</label>
-                                       <div class="input-group">
-                                          <input type="email" class="form-control border-0" id="loginemail" placeholder="Enter Your Email" name="email">
-                                          <a href="javascript:void(0)" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-mail.png' %}" alt="mail" class="img-fluid"></a>
-                                       </div>
-                                       </div>
+                                    <label for="loginemail" class="form-label">Email</label>
+                                    <div class="input-group">
+                                       <input type="email" class="form-control border-0" id="loginemail" placeholder="Enter Your Email" name="email">
+                                       <a href="javascript:void(0)" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-mail.png' %}" alt="mail" class="img-fluid"></a>
+                                    </div>
+                                    </div>
                                     <div class="logFormGroup">
                                        <label for="pwd" class="form-label">Password</label>
                                        <div class="input-group">
@@ -110,7 +110,6 @@ Author: Hussein M Migadde
                                              <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                           </a>
                                        </div>
-                                    
                                     </div>
                                     <div class="checkFormGroup">
                                        <div class="form-check">
@@ -137,12 +136,15 @@ Author: Hussein M Migadde
                                           <p>Don't Have An Account <a href="javascript:void(0);" class="signUpLink">Sign Up</a></p>
                                     </div>
                                  </form>
+                                 <!-- END LOGN FORM -->
                               </div>
                            </div>
                            <div class="tab-pane fade" id="register">
                               <div class="registerTabInner">
                                  <div class="loginTabInner">
-                                    <form>
+                                    <!-- BEGIN REGISTRATION FORM -->
+                                    <form action="{% url 'register' %}" method="POST">
+                                       {% csrf_token %}
                                        <div class="logFormGroup">
                                           <label for="name" class="form-label">Name</label>
                                           <div class="input-group">
@@ -165,7 +167,6 @@ Author: Hussein M Migadde
                                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                                              </a>
                                           </div>
-                                       
                                        </div>
                                        <div class="checkFormBtn">
                                           <button type="submit" class="btnCustom5 btn-1 hover-slide-down w-100">
@@ -182,6 +183,7 @@ Author: Hussein M Migadde
                                              <p>Already  Have An Account <a href="javascript:void(0);" class="signUpLink">Log In</a></p>
                                        </div>
                                     </form>
+                                    <!-- END REGISTRATION FORM -->
                                  </div>
                               </div>
                            </div>
@@ -195,16 +197,16 @@ Author: Hussein M Migadde
    </section>
    <!--error end-->
    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/wow.min.js' %}"></script>
-<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
-<script src="{% static 'js/jquery-ui.min.js' %}"></script>
-<script src="{% static 'js/slick.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'js/contact_form.js' %}"></script>
-<script src="{% static 'js/grt-youtube-popup.js' %}"></script>
-<script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
-<script src="{% static 'js/custom.js' %}"></script>
+   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   <script src="{% static 'js/wow.min.js' %}"></script>
+   <script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+   <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+   <script src="{% static 'js/slick.min.js' %}"></script>
+   <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+   <script src="{% static 'js/contact_form.js' %}"></script>
+   <script src="{% static 'js/grt-youtube-popup.js' %}"></script>
+   <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+   <script src="{% static 'js/custom.js' %}"></script>
 
    <script>
       $(".passwordEye").click(function() {
