@@ -1,0 +1,43 @@
+{% if messages %}
+<div id="message" class="alert alert-dismissible">
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show"{% endif %} role="alert">
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Important: {% endif %}
+        {{ message }}
+        <button type="button" class="close" style="position: absolute; top: 8px; right: 10px; border: none; background: transparent; font-size: 30px;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var closeButtons = document.querySelectorAll('#message .close');
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var alert = this.closest('.alert');
+                if (alert) {
+                    alert.style.transition = 'opacity 0.5s ease';
+                    alert.style.opacity = '0';
+                    setTimeout(function() {
+                        alert.style.display = 'none';
+                    }, 500); // Match this with the transition duration
+                }
+            });
+        });
+
+        // Automatically hide the message after 10 seconds
+        setTimeout(function() {
+            var messageElement = document.getElementById('message');
+            if (messageElement) {
+                messageElement.style.transition = 'opacity 0.5s ease';
+                messageElement.style.opacity = '0';
+                setTimeout(function() {
+                    messageElement.style.display = 'none';
+                }, 500); // Match this with the transition duration
+            }
+        }, 10000); // 10000 milliseconds = 10 seconds
+    });
+</script>

@@ -208,12 +208,22 @@
                         <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/card.png' %}" alt="loader"
                             class="img-fluid"><span class="badge rounded-pill">{{ cart_count }}</span></a>
                     </li>
+                    {% if user.id is None %}
                     <li class="nav-item loginBtn d-none d-md-block">
                         <div class="btnGroup">
                             <a class="nav-link btn" href="{% url 'login' %}">Log In</a>
                             <a class="nav-link btn" href="{% url 'register' %}">Register</a>
                         </div>
                     </li>
+                    {% else %}
+                    <li class="nav-item loginBtn d-none d-md-block">
+                        <small class="title text-muted">Welcome | {{ user.first_name }}</small>
+                        <div class="btnGroup">
+                            <a class="nav-link btn" href="javascript:void(0);">Dashboard</a>
+                            <a class="nav-link btn" href="{% url 'register' %}">Logout</a>
+                        </div>
+                    </li>
+                    {%  endif %}
                     <li class="nav-item toggleBtn">
                         <a class="nav-link navbar-toggler" href="javascript:void(0);" data-bs-toggle="collapse"
                             data-bs-target="#collapsibleNavbar">
