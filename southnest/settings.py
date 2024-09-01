@@ -153,3 +153,7 @@ EMAIL_HOST_USER = 'mmhussein13@gmail.com'  # Your email
 EMAIL_HOST_PASSWORD = 'hvnq ihuy jpnh woxg'  # Your email password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# Password reset email configurations
+PASSWORD_RESET_TIMEOUT = 1800  # Link expires in 30 minutes
+DEFAULT_FROM_EMAIL = 'Southnest Support <support@southnest.com>'
+
