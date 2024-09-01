@@ -150,6 +150,6 @@ EMAIL_PORT = 587  # Usually 587 for TLS or 465 for SSL
 EMAIL_USE_TLS = True  # Use True for TLS and False for SSL
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'mmhussein13@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = '@Wooddesk36hussein'  # Your email password
+EMAIL_HOST_PASSWORD = 'hvnq ihuy jpnh woxg'  # Your email password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

@@ -217,9 +217,9 @@
                     </li>
                     {% else %}
                     <li class="nav-item loginBtn d-none d-md-block">
-                        <small class="title text-muted">Welcome | {{ user.first_name }}</small>
+                        <small class="title text-muted">Welcome... {{ user.first_name|capfirst }}</small>
                         <div class="btnGroup">
-                            <a class="nav-link btn" href="javascript:void(0);">Dashboard</a>
+                            <a class="nav-link btn" href="{% url 'dashboard' %}">Dashboard</a>
                             <a class="nav-link btn" href="{% url 'register' %}">Logout</a>
                         </div>
                     </li>

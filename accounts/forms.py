@@ -11,11 +11,14 @@ class RegistrationForm(forms.ModelForm):
         'class': 'form-control',
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': ' Confirm Password',
+        'placeholder': ' Repeat Password',
     }))
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'phone_number', 'email', 'password']
+        fields = [
+            'first_name', 'last_name',
+            'phone_number', 'email', 'password'
+            ]
 
 
     def clean(self):
@@ -23,10 +26,14 @@ class RegistrationForm(forms.ModelForm):
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
         
-        if password != confirm_password:
-            raise forms.ValidationError(
-                "Password does not match!"
-            ) 
+        if password and confirm_password and password != confirm_password:
+            self.add_error('confirm_password', "Your passwords are not identical. Please try again!")
+            # Add a non-field error to the form
+            self.add_error(None, "Password mismatch! Please ensure both passwords are identical.")
+        
+        return cleaned_data
+
+
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
@@ -35,6 +42,9 @@ class RegistrationForm(forms.ModelForm):
         self.fields['email'].widget.attrs['placeholder'] = ' Enter Email '
         self.fields['phone_number'].widget.attrs['placeholder'] = ' Enter Phone Number '
         for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
+            self.fields[field].widget.attrs['class'] = 'form-control border-0'  # ======To apply CSS across all field
+
+
+
 
 

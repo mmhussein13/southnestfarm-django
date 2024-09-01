@@ -16,7 +16,7 @@ Author: Hussein M Migadde
 
 <head>
 <meta charset="utf-8">
-<title>SouthNest| Login</title>
+<title>SouthNest | Login</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
@@ -71,6 +71,14 @@ Author: Hussein M Migadde
          </div>
          <div class="loginSecCol loginSecCol2" style="background-image: url({% static 'images/bg-img6.png' %});">
             <div class="loginSecColInner">
+               {% if request.GET.command == 'verification' %}
+                  <div class=" container  mx-auto alert alert-info text-center commonHeading" role="alert" style="max-width: 380px;">
+                     <p><b>Thank you for registering!</b></p>
+                     <p>To activate your account, please check your email ({{ request.GET.email }}) and click the verification link. This step is necessary to confirm your identity.</p>
+                     <br><br>
+                     <p>Already  verified? <a href="{% url 'login' %}" class="signUpLink">Log In</a></p>
+                  </div>
+               {% else %}
                <div class="loginFormBox">
                   <div class="loginFormGroup">
                      <div class="loginSecHead">
@@ -199,6 +207,7 @@ Author: Hussein M Migadde
             </div>
          </div>
       </div>
+      {% endif %}
    </section>
    <!--error end-->
    <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>

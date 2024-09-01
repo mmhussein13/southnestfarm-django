@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<hr><br>
+<section class="selection-content padding-y bg">    
+{% include 'includes/alerts.html' %}
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <!--===============SIDEBAR===========-->
+                <ul class="list-group">
+                    <a class="list-group-item active" href="#"> My order history </a>
+                    <a class="list-group-item" href="#"> Transactions </a>
+                    <a class="list-group-item" href="#"> Return and refund </a>
+                    <a class="list-group-item" href="#"> Settings </a>
+                    <a class="list-group-item" href="#"> My Selling Items</a>
+                    <a class="list-group-item" href="#"> Recieved orders </a>
+                </ul>
+                <br>
+                <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Logout</span></a>
+                <!--===============SIDEBAR END===========-->
+            </aside>
+            <main class="col-md-9">
+                <article class="card">
+                    <header class="card-header">
+                        <strong class="d-inline-block mr-3"></strong>
+                        <span>Order Date: 16 December 2023</span>
+                    </header>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="text-muted"> Delivery to </h6>
+                                <p> Micheal Jackson <br> 
+                                    Phone +27 837288948 Email: mmhussein13@gmail.com <br>
+                                    Location: Home number, Building name, Street 123, Pretorius <br>
+                                    P.O.Bxox Box:24961
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-muted"> Payment </h6>
+                                <span class="text-success">
+                                    <i class="fab fa-lg fa-cc-visa"></i>
+                                    Visa **** 8890
+                                </span>
+                                <p>Subtotal: Ugs. 300,000 <br>
+                                    Shipping fee: Ugs. 50,000 <br>
+                                    <span class="b"> Total: Ugs. 350,000 </span>
+                                </p>
+                            </div>
+                        </div> . <!--  Row..//-->
+                    </div> <!-- Card Body -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <td width="65">
+                                    <img src="../images/items/1.jpg" class="mg-xs border">
+                                </td>
+                                <td>
+                                    <p class="title mb-0"> Product name goes here</p>
+                                    <var class="price text-muted"> Ugs. 40,000</var>
+                                </td>
+                                <td>Seller <br> SouthNest </td>
+                                <td width="250"> <a href="#" class="btn btn-outline-primary"> Track Order</a> <a href="#" class="btn btn-light"> Details </a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="../images/items/2.jpg" class="img-xs border">
+                                </td>
+                                <td>
+                                    <p class="title mb-0"> Another name goes here </p>
+                                    <var class="prince text-muted"> Ugs. 20,000</var>
+                                </td>
+                                <td>Seller <br> ABC Shop </td>
+                                <td> <a href="#" class="btn btn-outline-primary"> Track order </a> <a href="#" class="btn btn-light"> Details </a> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="../images/items/3.jpg" class="img-xs border">
+                                </td>
+                                <td>
+                                    <p class="title mb-0"> The name of the product goes here </p>
+                                    <var class="price text-muted"> Ugs. 50,000 </var>
+                                </td>
+                                <td> Seller <br> Wallmart </td>
+                                <td> <a href="#" class="btn btn-outline-primary"> Track Order </a> <a href="#" class="btn btn-light"> Details </a></td>
+                            </tr>
+                        </table>
+                    </div> <!-- Table responsive end -->
+                </article>  <!--  Order Group -->
+            </main>
+        </div> <!-- Row //-->
+    </div>
+
+</section>
+
+{% endblock content %}

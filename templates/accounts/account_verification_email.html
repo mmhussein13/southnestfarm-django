@@ -1,10 +1,22 @@
 {% autoescape off %}
 
-Hello! {{ user.first_name }},
+Dear {{ user.first_name }},
 
-Please click on the link below to confirm your registration.
+Thank you for registering on SouthNest! We're excited to have you as a part of our community.
+
+To complete your registration and gain full access to all the features on our website, please activate
+your account by clicking the link below:
 http://{{domain}}{% url 'activate' uidb64=uid token=token %}
 
-If you think it's not you, Please ignore this email. 
+If you did not register on our website, please disregard this email.
+
+If you have any questions or need assistance, feel free to reply to this email, and we'll be happy to help.
+
+Thank you for joining us, and we look forward to seeing you on www.southnest.com!
+
+Best regards,
+Hussein M
+SouthNest Support Team
+0837288948
 
 {% endautoescape %}
