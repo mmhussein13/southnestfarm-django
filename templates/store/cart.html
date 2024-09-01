@@ -3,135 +3,77 @@
 {% load static %}
 
 {% block content %}
-   <!--banner start-->
-   <section class="w-100 clearfix bannerSec" id="bannerSec" style="background-image: url('{% static 'images/inner-banner1.png' %}');">
-      <div class="container">
-         <div class="bannerContent">
-            <h1>Cart</h1>
-            <ul class="breadcrumb">
-               <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-               <li class="breadcrumb-item active">Cart</li>
-            </ul>
-         </div>
+<!--banner start-->
+<section class="w-100 clearfix bannerSec" id="bannerSec" style="background-image: url('{% static 'images/inner-banner1.png' %}');">
+   <div class="container">
+      <div class="bannerContent">
+         <h1>Cart</h1>
+         <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Cart</li>
+         </ul>
       </div>
-   </section>
-   <!--banner end-->
-   <!--FAQ start-->
-   <section class="w-100 clearfix cart" id="cart">
-      <div class="cartInner">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-8">
-                  <div class="cartProduct">
-                     <div class="shippingProgressBar">
-                        <p>Congratulations, you've got free shipping!</p>
-                        <div class="progress">
-                           <div class="progress-bar" style="width:70%"></div>
-                        </div>
-                      </div>
-                     <div class="cartTbl">
-                        <table class="table table-borderless">
-                           <thead>
-                             <tr>
-                               <th>Products</th>
-                               <th>Price</th>
-                               <th>Quantity</th>
-                               <th>Subtotal</th>
-                               <th></th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                              {% for cart_item in cart_items %}
-                             <tr>
-                               <td>
-                                 <div class="productsDetail">
-                                    <div class="productsImg">
-                                       <img src="{{ cart_item.product.images.url }}" alt="product" class="img-fluid">
-                                    </div>
-                                    <div class="productsTxt">
-                                       <h6>{{ cart_item.product_name }}</h6>
-                                    </div>
-                                 </div>
-                               </td>
-                               <td><b>Ugs {{ cart_item.product.price }}</b></td>
-                               <td>
-                                 <div class="qty-container">
-                                    <a href="{% url 'remove_cart' cart_item.product_id %}" class="qty-btn-minus btn-light" type="button"><i class="fa fa-minus"></i></a>
-                                   <input type="text" name="qty" value="{{ cart_item.quantity }}" class="input-qty">
-                                    <a href="{% url 'add_cart' cart_item.product_id %}" class="qty-btn-plus btn-light" type="button"><i class="fa fa-plus"></i></a>
-                                </div>
-                               </td>
-                               <td><span>Ugs {{ cart_item.sub_total }}</span></td>
-                               <td><a href="{% url 'remove_cart_item' cart_item.product_id %}"><img src="{% static 'images/icon/cancel.png' %}" alt="cancel" class="img-fluid"></a></td>
-                             </tr>
-                             {% endfor %}
-                        </table>
-                        <div class="coupanCode">
-                           <div class="coupanCodeInput">
-                              <input type="text" class="form-control" placeholder="Coupan Code">
-                              <button class="btnCustom5 btn-1 hover-slide-down" type="button">
-                                 <span>
-                                    Apply Coupn <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
-                                 </span>
-                              </button>
-                           </div>
-                        </div>
+   </div>
+</section>
+<!--banner end-->
+<!--FAQ start-->
+<section class="w-100 clearfix cart" id="cart">
+   <div class="cartInner">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8">
+               <div class="cartProduct">
+                  {% if grand_total > 1000000 %}
+                  <div class="shippingProgressBar">
+                     <p>Congratulations, you've got free shipping!</p>
+                     <div class="progress">
+                        <div class="progress-bar" style="width:70%"></div>
                      </div>
-                  </div>
-               </div>
-               <div class="col-lg-4">
-                  <div class="checkoutAside">
-                     <div class="productBox">
-                        <div class="asideProductItem">
-                           <div class="asideHeading">
-                              <h4 class="mb-3">Cart Total</h4>
-                           </div>
-                           <div class="subTotals">
-                              <div class="subTotalsHead">
-                                 <p class="mb-0">Subtotals</p>
-                              </div>
-                              <div class="subTotalsNo">
-                                 <span class="inline-block">Ugs {{ total }}</span>
-                              </div>
-                           </div>
-                           <hr class="horizLine">
-                           <div class="subTotals">
-                              <div class="subTotalsHead">
-                                 <p class="mb-0">Shipping</p>
-                              </div>
-                           </div>
-                           <div class="subPrice">
-                              <div class="subPriceHeading custom-radios">
-                                 <div class="form-group">
-                                    <input type="radio" id="flatRate" name="selectprice" checked>
-                                    <label for="flatRate"><span>Flat Rate</span></label>
+                     </div>
+                     {% endif %}
+                  <div class="cartTbl">
+                     <table class="table table-borderless">
+                        <thead>
+                           <tr>
+                              <th>Products</th>
+                              <th>Price</th>
+                              <th>Quantity</th>
+                              <th>Subtotal</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {% for cart_item in cart_items %}
+                           <tr>
+                              <td>
+                              <div class="productsDetail">
+                                 <div class="productsImg">
+                                    <img src="{{ cart_item.product.images.url }}" alt="product" class="img-fluid">
+                                 </div>
+                                 <div class="productsTxt">
+                                    <h6>{{ cart_item.product_name }}</h6>
                                  </div>
                               </div>
-                              <div class="asideProductPrice">
-                                 <span class="inline-block">Ugs {{ shipping_flat_rate }}</span>
+                              </td>
+                              <td><b>Ugs {{ cart_item.product.price }}</b></td>
+                              <td>
+                              <div class="qty-container">
+                                 <a href="{% url 'remove_cart' cart_item.product_id %}" class="qty-btn-minus btn-light" type="button"><i class="fa fa-minus"></i></a>
+                                 <input type="text" name="qty" value="{{ cart_item.quantity }}" class="input-qty">
+                                 <a href="{% url 'add_cart' cart_item.product_id %}" class="qty-btn-plus btn-light" type="button"><i class="fa fa-plus"></i></a>
                               </div>
-                           </div>
-                           <div class="subPrice">
-                              <div class="subPriceHeading custom-radios">
-                                 <input type="radio" id="localPickup" name="selectprice">
-                                 <label for="localPickup"><span>Local Pickup</span></label>
-                              </div>
-                              <div class="asideProductPrice">
-                                 <span class="inline-block">Ugs {{ shipping_local_pickup }}</span>
-                              </div>
-                           </div>
-                           <hr class="horizLine">
-                           <div class="subTotals">
-                              <div class="subTotalsHead">
-                                 <p class="mb-0">Totals</p>
-                              </div>
-                              <div class="subTotalsNo">
-                                 <span class="inline-block">Ugs {{ grand_total }}</span>
-                              </div>
-                           </div>
-                           <button class="btnCustom5 btn-1 hover-slide-down w-100 mt-4" type="button">
+                              </td>
+                              <td><span>Ugs {{ cart_item.sub_total }}</span></td>
+                              <td><a href="{% url 'remove_cart_item' cart_item.product_id %}"><img src="{% static 'images/icon/cancel.png' %}" alt="cancel" class="img-fluid"></a></td>
+                           </tr>
+                           {% endfor %}
+                     </table>
+                     <div class="coupanCode">
+                        <div class="coupanCodeInput">
+                           <input type="text" class="form-control" placeholder="Coupan Code">
+                           <button class="btnCustom5 btn-1 hover-slide-down" type="button">
                               <span>
-                                 Proceed to check out <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
+                                 Apply Coupn <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
                               </span>
                            </button>
                         </div>
@@ -139,9 +81,69 @@
                   </div>
                </div>
             </div>
+            <div class="col-lg-4">
+               <div class="checkoutAside">
+                  <div class="productBox">
+                     <div class="asideProductItem">
+                        <div class="asideHeading">
+                           <h4 class="mb-3">Cart Total</h4>
+                        </div>
+                        <div class="subTotals">
+                           <div class="subTotalsHead">
+                              <p class="mb-0">Subtotals</p>
+                           </div>
+                           <div class="subTotalsNo">
+                              <span class="inline-block">Ugs {{ total }}</span>
+                           </div>
+                        </div>
+                        <hr class="horizLine">
+                        <div class="subTotals">
+                           <div class="subTotalsHead">
+                              <p class="mb-0">Shipping</p>
+                           </div>
+                        </div>
+                        <div class="subPrice">
+                           <div class="subPriceHeading custom-radios">
+                              <div class="form-group">
+                                 <input type="radio" id="flatRate" name="selectprice" checked>
+                                 <label for="flatRate"><span>Flat Rate</span></label>
+                              </div>
+                           </div>
+                           <div class="asideProductPrice">
+                              <span class="inline-block">Ugs {{ shipping_flat_rate }}</span>
+                           </div>
+                        </div>
+                        <div class="subPrice">
+                           <div class="subPriceHeading custom-radios">
+                              <input type="radio" id="localPickup" name="selectprice">
+                              <label for="localPickup"><span>Local Pickup</span></label>
+                           </div>
+                           <div class="asideProductPrice">
+                              <span class="inline-block">Ugs {{ shipping_local_pickup }}</span>
+                           </div>
+                        </div>
+                        <hr class="horizLine">
+                        <div class="subTotals">
+                           <div class="subTotalsHead">
+                              <p class="mb-0">Totals</p>
+                           </div>
+                           <div class="subTotalsNo">
+                              <span class="inline-block">Ugs {{ grand_total }}</span>
+                           </div>
+                        </div>
+                        <a href="{% url 'checkout' %}" class="btnCustom5 btn-1 hover-slide-down w-100 mt-4" type="button">
+                           <span>
+                              Proceed to check out <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
+                           </span>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
-   </section>
-   <!--FAQ end-->
-   
+   </div>
+</section>
+<!--FAQ end-->
+
 {% endblock content %}

@@ -1,3 +1,6 @@
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
 from django.shortcuts import render, redirect, get_object_or_404    
 from store.models import Product
 from .models import Cart, CartItem
@@ -89,3 +92,48 @@ def cart(request, total=0, quantity=0, cart_item=None):
         'shipping_local_pickup' : shipping_local_pickup,
     }
     return render(request, 'store/cart.html', context)
+
+
+def checkout(request, total=0, quantity=0, cart_item=None):
+    try:
+        tax = 0
+        grand_total = 0
+        shipping_flat_rate = 0  # Example flat rate
+        shipping_local_pickup = 0   # Example local pickup rate
+        total = 0
+        quantity = 0
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+
+        # Calculate total price and quantity
+        for cart_item in cart_items:
+            total += cart_item.product.price * cart_item.quantity
+            quantity += cart_item.quantity
+
+        # Calculate tax (if applicable)
+        tax = (17 * total) / 100
+
+        # Determine selected shipping method (default to flat rate)
+        shipping_method = request.POST.get('selectprice', 'flateRate')  # Default to 'flateRate'
+
+        # Calculate grand total based on shipping method
+        if shipping_method == 'flateRate':
+            grand_total = total + shipping_flat_rate
+        elif shipping_method == 'localPickup':
+            grand_total = total + shipping_local_pickup
+        else:
+            grand_total = total  # No shipping cost if none of the above is selected
+
+    except ObjectDoesNotExist:
+        total = quantity = cart_items = None
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'cart_items': cart_items,
+        'tax': tax,
+        'grand_total': grand_total,
+        'shipping_flat_rate': shipping_flat_rate,
+        'shipping_local_pickup': shipping_local_pickup,
+    }
+    return render(request, 'store/checkout.html', context)

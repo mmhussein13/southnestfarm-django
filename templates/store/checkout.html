@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!--banner start-->
+<section class="w-100 clearfix bannerSec" id="bannerSec" style="background-image: url('{% static 'images/inner-banner1.png' %}');">
+<div class="container">
+<div class="bannerContent">
+<h1>Checkout</h1>
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+    <li class="breadcrumb-item active">Checkout</li>
+</ul>
+</div>
+</div>
+</section>
+<!--banner end-->
+<!--FAQ start-->
+<section class="w-100 clearfix checkout" id="checkout">
+<div class="container">
+<div class="checkoutInner">
+<div class="row">
+    <div class="col-lg-7 order-2 order-lg-1">
+        <div class="blogSingleBlog">
+            <div class="latestNewsCardInner">
+            <!--checkout box-->
+            <div class="commentBox">
+                <div class="commentBoxInner">
+                    <div class="commentBoxHeading">
+                        <h4>Personal Information</h4>
+                    </div>
+                    <div class="commentBoxForm">
+                        <!--checkout form-->
+                        <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="email" class="form-control" id="lname" name="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="website">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="phone" class="form-label">Phone no.</label>
+                                    <input type="tel" class="form-control" id="phone" name="website">
+                                </div>
+                            </div>
+                            <div class="commentBoxHeading">
+                                <h4>Billing Detail</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="zip" class="form-label">Zip / Postal Code</label>
+                                    <input type="email" class="form-control" id="zip" name="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="country" class="form-label">Country</label>
+                                    <input type="text" class="form-control" id="country" name="website">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="commentFormGroup">
+                                    <label for="state" class="form-label">State / Province</label>
+                                    <input type="text" class="form-control" id="state" name="website">
+                                </div>
+                            </div>
+                            <div class="commentBoxHeading">
+                                <h4>Shipping Detail</h4>
+                            </div>
+                            <div class="commentFormGroup mb-3">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="remember"> Ship to a different adderess
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="commentFormGroup commentLabelGroup">
+                                    <label for="email" class="form-label"><strong>Order Notes (Optional) </strong></label>
+                                    <textarea class="form-control" rows="5" id="writeComment" placeholder="Notes About Your Order"  name="comment"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Place Order <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 order-1 order-lg-2">
+        <div class="checkoutAside">
+            <div class="productBox">
+            <div class="asideProductItem">
+                <div class="asideHeading">
+                    <h4>Product</h4>
+                </div>
+                <div class="asideProdtBx">
+                    <div class="asideImg">
+                        <!-- Enter Table here-->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody style="vertical-align: middle; text-align: center;">
+                                {% for cart_item in cart_items %}
+                                <tr>
+                                    <td>
+                                    <div class="productsDetail">
+                                        <div class="productsImg">
+                                        <img src="{{ cart_item.product.images.url }}" alt="product" class="img-fluid">
+                                        </div>
+                                        <div class="productsTxt">
+                                        <h6>{{ cart_item.product_name }}</h6>
+                                        </div>
+                                    </div>
+                                    </td>
+                                    <td><b>Ugs {{ cart_item.product.price }}</b></td>
+                                    <td>
+                                    <div class="qty-container">
+                                        <label for="">{{ cart_item.quantity }}</label>
+                                    </div>
+                                    </td>
+                                    <td><span>Ugs {{ cart_item.sub_total }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        <!-- Table Ends here-->
+                        <div class="asideContent">
+                        
+                    </div>
+                </div>
+                <div class="asidePrice">
+                    
+                </div>
+            </div>
+            <div class="subTotals">
+                <div class="subTotalsHead">
+                    <p class="mb-0">Subtotal</p>
+                </div>
+                <div class="subTotalsNo">
+                    <span class="inline-block">Ugs {{ total }}</span>
+                </div>
+            </div>
+            <hr class="horizLine">
+            <div class="subTotals">
+                <div class="subTotalsHead">
+                    <p class="mb-0">Shipping</p>
+                </div>
+            </div>
+            <div class="subPrice">
+                <div class="subPriceHeading custom-radios">
+                    <div class="form-group">
+                        <input type="radio" id="flatRate" name="selectprice" value="25000" checked>
+                        <label for="flatRate"><span>Flat Rate</span></label>
+                    </div>
+                </div>
+                <div class="asideProductPrice">
+                    <span class="inline-block" id="flatRateCost">Ugs 25000</span>
+                </div>
+            </div>
+            <div class="subPrice">
+                <div class="subPriceHeading custom-radios">
+                    <input type="radio" id="localPickup" name="selectprice" value="0">
+                    <label for="localPickup"><span>Local Pickup</span></label>
+                </div>
+                <div class="asideProductPrice">
+                    <span class="inline-block" id="localPickupCost">Ugs {{ shipping_local_pickup }}</span>
+                </div>
+            </div>
+            <hr class="horizLine">
+            <div class="subTotals">
+                <div class="subTotalsHead">
+                    <p class="mb-0">Totals</p>
+                </div>
+                <div class="subTotalsNo">
+                    <span class="inline-block" id="totalCost">Ugs {{ grand_total }}</span>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+        <div class="paymentMethod">
+        <div class="paymentMethodInner">
+            <div class="asideHeading">
+                <h4>Payment Method</h4>
+            </div>
+            <div class="paymentMethodOpt">
+                <div class="paymentOptName custom-radios">
+                    <div class="form-group paymentformGroup">
+                    <input type="radio" id="bankTransfer" name="selectPaymentMode" checked>
+                    <label for="bankTransfer">
+                    
+                            Direct Bank Transfer
+                            <span>Make your payment directly into our bank account.</span>
+                    
+                    </label>
+                    </div>
+                    <div class="form-group paymentformGroup">
+                    <input type="radio" id="cashDelivery" name="selectPaymentMode">
+                    <label for="cashDelivery">
+                    
+                        Cash On Delivery
+                        
+                        </label>
+                        </div>
+                        <div class="form-group paymentformGroup">
+                        
+                        </label>
+                        </div>
+                        <div class="form-group paymentformGroup">
+                        <input type="radio" id="paypal" name="selectPaymentMode">
+                        <label for="paypal">
+                            
+                                Paypal
+                        
+                        </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="cardImg">
+                    <img src="{% static 'images/card.png' %}" alt="card" class="img-fluid">
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<!--FAQ end-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[name="selectprice"]');
+        const totalCostElement = document.getElementById('totalCost');
+        const flatRateCost = parseFloat(document.getElementById('flatRateCost').innerText.replace('Ugs ', ''));
+        const localPickupCost = parseFloat(document.getElementById('localPickupCost').innerText.replace('Ugs ', ''));
+        const initialTotal = parseFloat(totalCostElement.innerText.replace('Ugs ', ''));
+    
+        function updateTotal() {
+            const selectedShippingCost = parseFloat(document.querySelector('input[name="selectprice"]:checked').value);
+            const grandTotal = initialTotal + selectedShippingCost;
+            totalCostElement.innerText = `Ugs ${grandTotal.toFixed(2)}`;
+        }
+    
+        radios.forEach(radio => {
+            radio.addEventListener('change', updateTotal);
+        });
+    
+        // Initialize the total on page load
+        updateTotal();
+    });
+    </script>
+    
+    
+{% endblock content %}
