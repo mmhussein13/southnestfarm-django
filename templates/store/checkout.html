@@ -33,30 +33,31 @@
                     </div>
                     <div class="commentBoxForm">
                         <!--checkout form-->
-                        <form>
+                        <form action="" method="POST">
+                            {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="fname" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="fname" name="name">
+                                    <input type="text" class="form-control" id="fname" name="name" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="lname" class="form-label">Last Name</label>
-                                    <input type="email" class="form-control" id="lname" name="email">
+                                    <input type="email" class="form-control" id="lname" name="email" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="email" name="website">
+                                    <input type="text" class="form-control" id="email" name="website" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="phone" class="form-label">Phone no.</label>
-                                    <input type="tel" class="form-control" id="phone" name="website">
+                                    <input type="tel" class="form-control" id="phone" name="website" required>
                                 </div>
                             </div>
                             <div class="commentBoxHeading">
@@ -65,7 +66,7 @@
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" name="name">
+                                    <input type="text" class="form-control" id="address" name="name" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -103,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Place Order <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span></button>
+                        <button type="submit" name="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Place Order <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span></button>
                         </form>
                     </div>
                 </div>
@@ -184,7 +185,7 @@
                     </div>
                 </div>
                 <div class="asideProductPrice">
-                    <span class="inline-block" id="flatRateCost">Ugs 25000</span>
+                    <span class="inline-block" id="flatRateCost">Ugs {{shipping_flat_rate}}</span>
                 </div>
             </div>
             <div class="subPrice">
@@ -258,29 +259,5 @@
 </div>
 </section>
 <!--FAQ end-->
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const radios = document.querySelectorAll('input[name="selectprice"]');
-        const totalCostElement = document.getElementById('totalCost');
-        const flatRateCost = parseFloat(document.getElementById('flatRateCost').innerText.replace('Ugs ', ''));
-        const localPickupCost = parseFloat(document.getElementById('localPickupCost').innerText.replace('Ugs ', ''));
-        const initialTotal = parseFloat(totalCostElement.innerText.replace('Ugs ', ''));
-    
-        function updateTotal() {
-            const selectedShippingCost = parseFloat(document.querySelector('input[name="selectprice"]:checked').value);
-            const grandTotal = initialTotal + selectedShippingCost;
-            totalCostElement.innerText = `Ugs ${grandTotal.toFixed(2)}`;
-        }
-    
-        radios.forEach(radio => {
-            radio.addEventListener('change', updateTotal);
-        });
-    
-        // Initialize the total on page load
-        updateTotal();
-    });
-    </script>
-    
     
 {% endblock content %}

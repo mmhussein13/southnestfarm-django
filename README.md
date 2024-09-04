@@ -1,2 +1,0 @@
-# southnestfarm-django
-# southnestfarm-django

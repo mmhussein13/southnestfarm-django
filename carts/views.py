@@ -1,14 +1,14 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
-from django.shortcuts import render, redirect, get_object_or_404    
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
+
 from store.models import Product
 from .models import Cart, CartItem
-from django.core.exceptions import ObjectDoesNotExist
-
-from django.http import HttpResponse
-
 # Create your views here.
+
 def _cart_id(request):
     cart = request.session.session_key
     if not cart: 
@@ -66,8 +66,11 @@ def cart(request, total=0, quantity=0, cart_item=None):
         grand_total = 0
         shipping_flat_rate = 0
         shipping_local_pickup = 0
-        cart         = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items   = CartItem.objects.filter(cart=cart, is_active=True)
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.filter(user=request.user)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items   = CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
             total += cart_item.product.price * cart_item.quantity
             quantity += cart_item.quantity
@@ -75,7 +78,7 @@ def cart(request, total=0, quantity=0, cart_item=None):
         tax         = (17 * total)/100
         shipping_flat_rate = 20000
         shipping_local_pickup = 0
-        grand_total = total 
+        grand_total = total + tax + shipping_flat_rate
         
         
 
@@ -94,11 +97,12 @@ def cart(request, total=0, quantity=0, cart_item=None):
     return render(request, 'store/cart.html', context)
 
 
+@login_required(login_url='login')
 def checkout(request, total=0, quantity=0, cart_item=None):
     try:
         tax = 0
         grand_total = 0
-        shipping_flat_rate = 0  # Example flat rate
+        shipping_flat_rate = 25000  # Example flat rate
         shipping_local_pickup = 0   # Example local pickup rate
         total = 0
         quantity = 0

@@ -355,7 +355,7 @@ body, html {
 }
 .topHeader {
   background-color: #ffd55f;
-  padding: 2px;
+  padding: 15px;
 }
 .topHeader .topHeaderInner {
   display: flex;
@@ -464,7 +464,7 @@ body, html {
 }
 .mainHeader .navbar .container .rightMenu .loginBtn .btnGroup {
   display: flex;
-  border-radius: 30px;
+  border-radius: 6px;
   overflow: hidden;
 }
 .mainHeader .navbar .container .rightMenu .loginBtn .btnGroup a {
@@ -1747,7 +1747,7 @@ body, html {
 }
 
 .industryLeadingSheep {
-  background-image: url(../images/bg-img15.png);
+  background-image: url("{% static '../images/bg-img15.png' %}");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -2102,7 +2102,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/chicken-farm.png);
+  background-image: url("{% static 'images/img15.png' %}");
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -2132,7 +2132,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("{% static '../images/chicken-farm.png' %}");
+  background-image: url("{% static 'images/img15.png' %}");
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -3446,7 +3446,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/chicken-farm.png);
+  background-image: url(../images/img15.png);
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -3476,7 +3476,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/chicken-farm.png);
+  background-image: url(../images/img15.png);
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -6222,7 +6222,7 @@ body, html {
   height: 100vh;
 }
 .loginSec .loginSecRow .loginSecCol.loginSecCol1 {
-  background-color: skyblue;
+  background-color: #ED624F;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6238,7 +6238,7 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #e2f7f7;
+  background-color: #fdefed;
 }
 .loginSec .loginSecRow .loginSecCol.loginSecCol2 .loginSecColInner {
   display: flex;
