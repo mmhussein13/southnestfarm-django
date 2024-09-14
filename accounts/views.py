@@ -22,8 +22,6 @@ from .models import Account
 from .forms import RegistrationForm
 
 
-
-
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -34,22 +32,22 @@ def register(request):
             phone_number = form.cleaned_data['phone_number']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            
-            email_prefix = email.split("@")[0]         # ================Extract email prefix
 
-            last_three_digits = ''.join(random.sample(phone_number, 3))   # =========Randomly select three digits from the phone number
+            email_prefix = email.split("@")[0] # ================Extract email prefix
+# =========Randomly select three digits from the phone number
+            last_three_digits = ''.join(random.sample(phone_number, 3))
+# Combine email prefix and last three digits of phone number
+            username = f"{email_prefix}{last_three_digits}"
 
-            username = f"{email_prefix}{last_three_digits}"  # ==========Combine email prefix and last three digits of phone number
-            
             user = Account.objects.create_user(
                 first_name=first_name, last_name=last_name,
                 email=email, username=username, password=password
                 )
             user.phone_number = phone_number
             user.save()
-            
-            
-            # =========================USER ACTIVATION=================================================
+
+
+            # =========================USER ACTIVATION============================
             current_site = get_current_site(request)
             mail_subject = ' Please activate your account!'
             message = render_to_string('accounts/account_verification_email.html', {
@@ -60,13 +58,16 @@ def register(request):
             })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.send() 
-            
-            #messages.success(request, ' Thank you for registering, Please open your email and click on the link sent to verify that you are not a Robot and to activate your account.')
-            return redirect('/accounts/login/?command=verification&email='+email)  
+            send_email.send()
+
+            #messages.success(request, '
+            # Thank you for registering, Please open your email and click on
+            # the link sent to verify that you are not a Robot and to
+            # activate your account.')
+            return redirect('/accounts/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()
-    
+
     context = {
         'form': form,
     }
@@ -76,22 +77,22 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        
+
         user = auth.authenticate(email=email, password=password)
-        
+
         if user is not None:
             try:
                 cart = Cart.objects.get(cart_id=_cart_id(request))
                 is_cart_item_exists = CartItem.objects.filter(product=product, cart=cart).exists()
                 if is_cart_item_exists:
                     cart_item = CartItem.objects.filter(cart=cart)
-                    
+
                     for item in cart_item:
                         item.user = user
                         item.save()
             except:
                 pass
-            
+
             auth.login(request, user)
             messages.success(request, ' You are logged in.')
             return redirect('dashboard')
@@ -138,7 +139,7 @@ def forgot_password(request):
         email = request.POST['email']
         if Account.objects.filter(email=email).exists():
             user = Account.objects.get(email__exact=email)
-            
+
             #=============Rquesting password email=======================
             current_site = get_current_site(request)
             mail_subject = ' Reset your Password'
@@ -154,7 +155,7 @@ def forgot_password(request):
             
             messages.success(request, 'Password reset email has been sent to your email address.')
             return redirect('login')
-            
+
         else:
             messages.error(request, 'Account does not exist!')
             return redirect('forgot_password')
@@ -166,7 +167,7 @@ def reset_password_validate(request, uidb64, token):
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-    
+
     if user is not None and default_token_generator.check_token(user, token):
         request.session['uid'] = uid
         messages.success(request, 'Please reset your password')
