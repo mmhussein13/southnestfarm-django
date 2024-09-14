@@ -77,11 +77,12 @@ Author: Hussein M Migadde
                      <div class="loginSecHead">
                         <div class="commonHeading">
                            <h4>Welcome Back!</h4>
-                           <p>Welcome Back Please Enter Your Detail To Log In</p>
+                           <p>Please Enter Your Details To Register</p>
                         </div>
                      </div>
                      <div class="loginRegisterTab">
-                        <!-- Nav pills -->
+                        <!--    Nav pills 
+                        
                         <ul class="nav nav-pills">
                            <li class="nav-item">
                               <a class="nav-link active" data-bs-toggle="pill" href="#login">Log In</a>
@@ -90,10 +91,11 @@ Author: Hussein M Migadde
                               <a class="nav-link" data-bs-toggle="pill" href="#register">Register</a>
                            </li>
                         </ul>
+                        -->
                         <!-- Tab panes -->
                         <div class="tab-content">
-                           <div class="tab-pane active" id="login">
-                              {% include "includes/alerts.html" %}
+                           
+                           <div class="tab-pane" id="login">
                               <div class="loginTabInner">
                                  <!-- BEGIN LOGN FORM -->
                                  <form action="{% url 'login' %}" method="POST">
@@ -142,92 +144,128 @@ Author: Hussein M Migadde
                                  <!-- END LOGN FORM -->
                               </div>
                            </div>
-                           <div class="tab-pane fade" id="register">
+                           <div class="tab-pane active" id="register">
                               <div class="registerTabInner">
                                  <div class="loginTabInner">
                                     <!-- BEGIN REGISTRATION FORM -->
+                                    {% include "includes/alerts.html" %}
                                     <form action="{% url 'register' %}" method="POST">
                                        {% csrf_token %}
-                                       <div class="logFormGroup">
-                                          {% include "includes/alerts.html" %}
-                                          <label for="first_name" class="form-label">First Name</label>
-                                          <div class="input-group">
-                                             {{ form.first_name }}
-                                             <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-user.png' %}" alt="mail" class="img-fluid"></a>
-                                          </div>
-                                       </div>
-                                       
-                                          <div class="logFormGroup">
-                                             <label for="last_name" class="form-label">Last Name</label>
-                                             <div class="input-group">
-                                                {{ form.last_name }}
-                                                <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-user.png' %}" alt="mail" class="img-fluid"></a>
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="first_name" class="form-label">First Name</label>
+                                                <div class="input-group">
+                                                   {{ form.first_name }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0">
+                                                      <img src="{% static 'images/icon/outline-user.png' %}" alt="mail" class="img-fluid">
+                                                   </a>
+                                                </div>
                                              </div>
                                           </div>
-                                       
-                                       <div class="logFormGroup">
-                                          <label for="email" class="form-label">Email</label>
-                                          <div class="input-group">
-                                             {{ form.email }}
-                                             <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/outline-mail.png' %}" alt="mail" class="img-fluid"></a>
+                           
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="last_name" class="form-label">Last Name</label>
+                                                <div class="input-group">
+                                                   {{ form.last_name }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0">
+                                                      <img src="{% static 'images/icon/outline-user.png' %}" alt="mail" class="img-fluid">
+                                                   </a>
+                                                </div>
+                                             </div>
                                           </div>
                                        </div>
-                                       <div class="logFormGroup">
-                                          <label for="phone_number" class="form-label">Phone Number</label>
-                                          <div class="input-group">
-                                             {{ form.phone_number }}
-                                             <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0"><img src="{% static 'images/icon/phone.png' %}" alt="mail" class="img-fluid"></a>
+                           
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="email" class="form-label">Email</label>
+                                                <div class="input-group">
+                                                   {{ form.email }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0">
+                                                      <img src="{% static 'images/icon/outline-mail.png' %}" alt="mail" class="img-fluid">
+                                                   </a>
+                                                </div>
+                                             </div>
+                                          </div>
+                           
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="phone_number" class="form-label">Phone Number</label>
+                                                <div class="input-group">
+                                                   {{ form.phone_number }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text bg-white border-0">
+                                                      <img src="{% static 'images/icon/phone.png' %}" alt="mail" class="img-fluid">
+                                                   </a>
+                                                </div>
+                                             </div>
                                           </div>
                                        </div>
-                                       <div class="logFormGroup">
-                                          <label for="registerPassword" class="form-label">Create Password</label>
-                                          <div class="input-group">
-                                             {{ form.password }}
-                                             <a href="javascript:void(0)" tabindex="-1" class="input-group-text passwordEye bg-white border-0">
-                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                             </a>
+                           
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="registerPassword" class="form-label">Create Password</label>
+                                                <div class="input-group">
+                                                   {{ form.password }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text passwordEye bg-white border-0">
+                                                      <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                   </a>
+                                                </div>
+                                             </div>
+                                          </div>
+                           
+                                          <div class="col-md-6">
+                                             <div class="logFormGroup">
+                                                <label for="registerPassword" class="form-label">Repeat Password</label>
+                                                <div class="input-group">
+                                                   {{ form.confirm_password }}
+                                                   <a href="javascript:void(0)" tabindex="-1" class="input-group-text passwordEye bg-white border-0">
+                                                      <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                   </a>
+                                                </div>
+                                             </div>
                                           </div>
                                        </div>
-                                       <div class="logFormGroup">
-                                          <label for="registerPassword" class="form-label">Repeat Password</label>
-                                          <div class="input-group">
-                                             {{ form.confirm_password }}
-                                             <a href="javascript:void(0)" tabindex="-1" class="input-group-text passwordEye bg-white border-0">
-                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                             </a>
-                                          </div>
-                                       </div>
+                           
                                        <div class="checkFormBtn">
                                           <button type="submit" class="btnCustom5 btn-1 hover-slide-down w-100">
-                                             <span class="justify-content-center">Sign Up <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span>
+                                             <span class="justify-content-center">Sign Up 
+                                                <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
+                                             </span>
                                           </button>
                                        </div>
-
+                           
                                        {% if form.email.errors %}
                                           <div class="critical-error" style="color: #ff0000;font-weight: bold;background-color: #ffeeee;padding: 10px;border-radius: 5px;margin-top: 5px;">
-                                       {{ form.email.errors }}
+                                             {{ form.email.errors }}
                                           </div>
                                        {% endif %}
                                        {% if form.non_field_errors %}
-                                       <div class="critical-error" style="color: #ff0000;font-weight: bold;background-color: #ffeeee;padding: 10px;border-radius: 5px;margin-top: 5px;">
-                                       {{ form.non_field_errors }}
+                                          <div class="critical-error" style="color: #ff0000;font-weight: bold;background-color: #ffeeee;padding: 10px;border-radius: 5px;margin-top: 5px;">
+                                             {{ form.non_field_errors }}
                                           </div>
                                        {% endif %}
-
+                           
                                        <div class="checkGoogleBtn">
                                           <a href="javascript:void(0)">
                                              <img src="{% static 'images/icon/google.png' %}" alt="google" class="img-fluid">
                                              <span>Cotinue With Google</span>
                                           </a>
                                        </div>
+                           
                                        <div class="signUpGroup">
-                                             <p>Already  Have An Account <a href="{% url 'login' %}" class="signUpLink">Log In</a></p>
+                                          <p>Already Have An Account? 
+                                             <a href="{% url 'login' %}" class="signUpLink">Log In</a>
+                                          </p>
                                        </div>
                                     </form>
                                     <!-- END REGISTRATION FORM -->
                                  </div>
                               </div>
                            </div>
+                           
                         </div>
                      </div>
                   </div>

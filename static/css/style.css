@@ -6222,7 +6222,7 @@ body, html {
   height: 100vh;
 }
 .loginSec .loginSecRow .loginSecCol.loginSecCol1 {
-  background-color: skyblue;
+  background-color: #cee5f4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6238,7 +6238,7 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #e2f7f7;
+  background-color: #cee5f4;
 }
 .loginSec .loginSecRow .loginSecCol.loginSecCol2 .loginSecColInner {
   display: flex;

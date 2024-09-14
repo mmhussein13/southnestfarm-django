@@ -131,7 +131,7 @@
                             <li><a class="dropdown-item" href="{% url 'store' %}">Our Shop</a></li>
                             <li><a class="dropdown-item" href="{{ product.get_url }}">Shop Single</a></li>
                             <li><a class="dropdown-item" href="{% url 'cart' %}">Shopping Cart</a></li>
-                            <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a></li>
                         </ul>
                     </li>
                     <!-- <li class="nav-item dropdown">
@@ -220,7 +220,7 @@
                         <small class="title text-muted">Welcome... {{ user.first_name|capfirst }}</small>
                         <div class="btnGroup">
                             <a class="nav-link btn" href="{% url 'dashboard' %}">Dashboard</a>
-                            <a class="nav-link btn" href="{% url 'register' %}">Logout</a>
+                            <a class="nav-link btn" href="{% url 'login' %}">Logout</a>
                         </div>
                     </li>
                     {%  endif %}
@@ -338,7 +338,7 @@
                     <h6>Subtotal</h6>
                 </div>
                 <div class="priceTd text-end">
-                    <span>Ugs {{ cart_item.sub_total }}</span>
+                    <span class="inline-block" id="totalCost">Ugs {{ grand_total }}</span>
                 </div>
                 </div>
                 <div class="priceTr">
@@ -372,7 +372,7 @@
             </div>
         </div>
         <div class="cartBtnGroup">
-            <a class="btnCustom3 btn-1 hover-slide-down" href="javascript:void(0);">
+            <a class="btnCustom3 btn-1 hover-slide-down" href="{% url 'checkout' %}">
                 <span>Checkout <img src="{% static 'images/icon/arrow-right.png' %}" alt="right" class="img-fluid"></span>
             </a>
             <a class="btnCustom4 btn-1 hover-slide-down" href="{% url 'cart' %}">
