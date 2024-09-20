@@ -2,7 +2,6 @@
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
 import random
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required

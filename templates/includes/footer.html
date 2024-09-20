@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="contactInfoTxt">
                                         <h6>Call Us Now:</h6>
-                                        <p class="mb-0">+256 743 093 516</p>
+                                        <p class="mb-0">+256 743 09 3516</p>
                                         </div>
                                     </div>
                                 </a>
@@ -324,6 +324,23 @@
     }, 3000)
 
 </script>
+
+<script>
+    $(document).ready(function() {
+        $(".passwordEye").click(function() {
+            // Toggle the icon class between 'fa-eye' and 'fa-eye-slash'
+            $(this).find("i.fa").toggleClass("fa-eye fa-eye-slash");
+
+            // Find the input element within the same parent and toggle it's type
+            var input = $(this).parent().find("input");
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

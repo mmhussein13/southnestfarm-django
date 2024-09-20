@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+   <section class="w-100 clearfix errorSec" id="errorSec" style="background-image: url('{% static 'images/bg-img6.png' %}');">
+      <div class="container-fluid h-100">
+         <div class="errorSecInner">
+            <div class="errorSecGroup">
+               <div class="farmlandLogo">
+                  
+               </div>
+               <div class="farmlandCommingSoon">
+                  <h2>Coming Soon</h2>
+               </div>
+               <div class="farmlandComingForm">
+                  <form>
+                     <div class="inputGroup d-flex align-content-center">
+                        <input type="text" class="form-control" placeholder="Your Email" value="">
+                        <a class="btnCustom5 btn-1 hover-slide-down" id="LoadMoreBtn" href="javascript:void(0);">
+                           <span>Notify me <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span>
+                        </a>
+                     </div>                 
+                  </form>
+               </div>
+               <div class="farmlandImage">
+                  <img src="{% static 'images/img27.png' %}" alt="img" class="img-fluid">
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+{% endblock content %}

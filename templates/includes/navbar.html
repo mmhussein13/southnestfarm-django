@@ -1,9 +1,9 @@
 {% load static %}
 
 <body>
-    <!--cursor-->
+    <!--cursor
     <div class='cursor cursor1'></div> 
-    <div class='cursor cursor2'></div> 
+    <div class='cursor cursor2'></div> -->
     <!--Preloader start-->
     <div id="preloader">
     <div id="status">
@@ -19,7 +19,7 @@
         </div>
     </div>
     </div>
-    <!--Preloader end->
+    <!--Preloader end-->
     <!--header start-->
     <header class="w-100 clearfix header headerOne" id="headerOne">
     <!--top header-->
@@ -33,7 +33,7 @@
                             <img src="{% static 'images/icon/phone.png' %}" alt="icon" class="img-fluid">
                         </div>
                         <div class="iconTxt">
-                            <span>+27 (83)7288948</span>
+                            <span>+256 743 09 3516</span>
                         </div>
                     </div>
                 </a>
@@ -77,9 +77,10 @@
                         <a class="nav-link" href="{% url 'home' %}" data-bs-toggle="dropdown"><span>Projects</span> <i
                             class="fa fa-angle-right" aria-hidden="true"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'home' %}">Poultry</a></li>
-                            <li><a class="dropdown-item" href="home3.html">Home 02 ( Fish )</a></li>
-                            <li><a class="dropdown-item" href="home4.html">Home 03 ( Sheep )</a></li>
+                            <li><a class="dropdown-item" href="{% url 'home' %}">Chicken</a></li>
+                            <li><a class="dropdown-item" href="{% url 'coming_soon' %}">Goats</a></li>
+                            <li><a class="dropdown-item" href="{% url 'coming_soon' %}">Sheep</a></li>
+                            <li><a class="dropdown-item" href="{% url 'coming_soon' %}">Fish</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -88,7 +89,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
                             <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                            <li><a class="dropdown-item" href="{% url 'login'%}">Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                             <li><a class="dropdown-item" href="page-not-found.html">404 Page</a></li>
                             <li><a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
                         </ul>
@@ -133,6 +134,16 @@
                             <li><a class="dropdown-item" href="{% url 'cart' %}">Shopping Cart</a></li>
                             <li><a class="dropdown-item" href="{% url 'checkout' %}">Checkout</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" data-bs-toggle="dropdown">All Categories <i
+                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'store' %}">All Products</a></li>
+                            {% for category in links %}
+                                <li><a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a></li>
+                            {% endfor %}
+                            </ul>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link" href="#" data-bs-toggle="dropdown"><span>Shortcode</span> <i
@@ -188,7 +199,7 @@
                         </div>
                     </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" href="contact-us.html">Contact Us</a>
+                        <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
                     </li>
                     <li class="nav-item loginBtn d-block d-md-none">
                         <div class="btnGroup">
@@ -199,42 +210,43 @@
                 </ul>
                 </div>
                 <div class="rightMenu">
-                <ul class="nav">
-                    <li class="nav-item searchBtn">
-                        <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/search.png' %}" alt="loader"
-                            class="img-fluid"></a>
-                    </li>
-                    <li class="nav-item cardBtn">
-                        <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/card.png' %}" alt="loader"
-                            class="img-fluid"><span class="badge rounded-pill">{{ cart_count }}</span></a>
-                    </li>
-                    {% if user.id is None %}
-                    <li class="nav-item loginBtn d-none d-md-block">
-                        <div class="btnGroup">
-                            <a class="nav-link btn" href="{% url 'login' %}">Log In</a>
-                            <a class="nav-link btn" href="{% url 'register' %}">Register</a>
-                        </div>
-                    </li>
-                    {% else %}
-                    <li class="nav-item loginBtn d-none d-md-block">
-                        <small class="title text-muted">Welcome... {{ user.first_name|capfirst }}</small>
-                        <div class="btnGroup">
-                            <a class="nav-link btn" href="{% url 'dashboard' %}">Dashboard</a>
-                            <a class="nav-link btn" href="{% url 'login' %}">Logout</a>
-                        </div>
-                    </li>
-                    {%  endif %}
-                    <li class="nav-item toggleBtn">
-                        <a class="nav-link navbar-toggler" href="javascript:void(0);" data-bs-toggle="collapse"
-                            data-bs-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </a>
-                    </li>
-                </ul>
+                    <ul class="nav">
+                        <li class="nav-item searchBtn">
+                            <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/search.png' %}" alt="loader"
+                                class="img-fluid"></a>
+                        </li>
+                        <li class="nav-item cardBtn">
+                            <a class="nav-link" href="javascript:void(0);"><img src="{% static 'images/icon/card.png' %}" alt="loader"
+                                class="img-fluid"><span class="badge rounded-pill">{{ cart_count }}</span></a>
+                        </li>
+                        {% if user.id is None %}
+                        <li class="nav-item loginBtn d-none d-md-block">
+                            <small class="title text-muted">Welcome...Guest </small>
+                            <div class="btnGroup">
+                                <a class="nav-link btn" href="{% url 'login' %}">Log In</a>
+                                <a class="nav-link btn" href="{% url 'register' %}">Register</a>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item loginBtn d-none d-md-block">
+                            <small class="title text-muted">Welcome... {{ user.first_name|capfirst }}</small>
+                            <div class="btnGroup">
+                                <a class="nav-link btn" href="{% url 'dashboard' %}">Dashboard</a>
+                                <a class="nav-link btn" href="{% url 'login' %}">Logout</a>
+                            </div>
+                        </li>
+                        {%  endif %}
+                        <li class="nav-item toggleBtn">
+                            <a class="nav-link navbar-toggler" href="javascript:void(0);" data-bs-toggle="collapse"
+                                data-bs-target="#collapsibleNavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
     <!--overlay-->
     <div class="widgetOverlay"></div>
     </header>
@@ -280,10 +292,10 @@
                 <div class="itemContent">
                 <div class="itemTitlePriceGroup">
                     <div class="itemTitle">
-                        <h5>{{ cart_item.product_name }}</h5>
+                        <h5>{{ cart_item.product.product_name }}</h5>
                     </div>
                     <div class="itemPrice">
-                        <ins>Ugs {{ cart_item.product.price }}</ins> 
+                        <ins>Ugs  {{ cart_item.product.price }}</ins> 
                     </div>
                 </div>
                 <div class="addItems">
@@ -317,15 +329,15 @@
                 </div> -->
                 <div class="addItems">
                     <div class="incrementItems">
-                        <!--<div class="input-group qty-container">
-                            <a href="javascript:void(0);" class="input-group-text qty-btn-minus">-</a>
+                        <div class="input-group qty-container">
+                        <!--    <a href="javascript:void(0);" class="input-group-text qty-btn-minus">-</a>
                             <input type="text" class="form-control input-qty" placeholder="" value="0">
-                            <a href="javascript:void(0);" class="input-group-text qty-btn-plus">+</a>
-                        </div> -->
+                            <a href="javascript:void(0);" class="input-group-text qty-btn-plus">+</a> -->
+                        </div> 
                     </div>
-                    <!--<div class="removeItems">
-                        <a href="javascript:void(0);" class="removeItem">REMOVE</a>
-                    </div> -->
+                    <div class="removeItems">
+                        <!--<a href="javascript:void(0);" class="removeItem">REMOVE</a> -->
+                    </div> 
                     
                 </div>
                 </div>
@@ -338,7 +350,7 @@
                     <h6>Subtotal</h6>
                 </div>
                 <div class="priceTd text-end">
-                    <span class="inline-block" id="totalCost">Ugs {{ grand_total }}</span>
+                    <span class="inline-block" id="totalCost">Ugs  {{ grand_total }} </span>
                 </div>
                 </div>
                 <div class="priceTr">
@@ -357,13 +369,13 @@
                     <h5>Total</h5>
                 </div>
                 <div class="priceTd text-end">
-                    <span>Ugs {{ total }}</span>
+                    <span>Ugs  {{ grand_total }} </span>
                 </div>
                 </div>
             </div>
         </div> 
         <div class="checkoutTaxIncluded">
-            <p>Tax included and shipping calculated at checkout</p>
+                <p>Tax included and shipping calculated at checkout</p>
             <div class="form-check">
                 <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" name="remember">I agree with <a

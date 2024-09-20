@@ -18,6 +18,12 @@
 <!--banner end-->
 <!--FAQ start-->
 <section class="w-100 clearfix cart" id="cart">
+   {% if not cart_items %}
+      <div class="text-center">
+         <h2>Your Shopping Cart is Empty</h2><br>
+         <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+      </div>
+   {% else %}
    <div class="cartInner">
       <div class="container">
          <div class="row">
@@ -51,7 +57,7 @@
                                     <img src="{{ cart_item.product.images.url }}" alt="product" class="img-fluid">
                                  </div>
                                  <div class="productsTxt">
-                                    <h6>{{ cart_item.product_name }}</h6>
+                                    <h6>{{ cart_item.product.product_name }}</h6>
                                  </div>
                               </div>
                               </td>
@@ -59,7 +65,7 @@
                               <td>
                               <div class="qty-container">
                                  <a href="{% url 'remove_cart' cart_item.product_id %}" class="qty-btn-minus btn-light" type="button"><i class="fa fa-minus"></i></a>
-                                 <input type="text" name="qty" value="{{ cart_item.quantity }}" class="input-qty">
+                                 <input type="text" name="qty" value="{{ cart_item.quantity }}" class="input-qty" readonly>
                                  <a href="{% url 'add_cart' cart_item.product_id %}" class="qty-btn-plus btn-light" type="button"><i class="fa fa-plus"></i></a>
                               </div>
                               </td>
@@ -70,10 +76,10 @@
                      </table>
                      <div class="coupanCode">
                         <div class="coupanCodeInput">
-                           <input type="text" class="form-control" placeholder="Coupan Code">
+                           <input type="text" class="form-control" placeholder="Enter Coupon Code Here">
                            <button class="btnCustom5 btn-1 hover-slide-down" type="button">
                               <span>
-                                 Apply Coupn <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
+                                 Apply Coupon <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
                               </span>
                            </button>
                         </div>
@@ -96,7 +102,7 @@
                               <span class="inline-block">Ugs {{ total }}</span>
                            </div>
                         </div>
-                        <hr class="horizLine">
+                        <!--<hr class="horizLine">
                         <div class="subTotals">
                            <div class="subTotalsHead">
                               <p class="mb-0">Shipping</p>
@@ -121,9 +127,15 @@
                            <div class="asideProductPrice">
                               <span class="inline-block">Ugs {{ shipping_local_pickup }}</span>
                            </div>
-                        </div>
+                        </div>-->
                         <hr class="horizLine">
                         <div class="subTotals">
+                           <div class="subTotalsHead">
+                              <p class="mb-0">Tax</p>
+                           </div>
+                           <div class="subTotalsNo">
+                              <span class="inline-block">{{ tax }}</span>
+                           </div>
                            <div class="subTotalsHead">
                               <p class="mb-0">Totals</p>
                            </div>
@@ -143,6 +155,7 @@
          </div>
       </div>
    </div>
+   {% endif %}
 </section>
 <!--FAQ end-->
 

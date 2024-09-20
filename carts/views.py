@@ -6,26 +6,26 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 
 from store.models import Product
-from .models import Cart, CartItem
-# Create your views here.
+from .models import Cart, CartItem  
 
+# Create your views here.
 def _cart_id(request):
     cart = request.session.session_key
-    if not cart: 
+    if not cart:
         cart = request.session.create()
     return cart
 
 def add_cart(request, product_id):
-    product = Product.objects.get(id=product_id) # Getting the product
-    
+    product = Product.objects.get(id=product_id)
+
     try:
-        cart = Cart.objects.get(cart_id=_cart_id(request)) # Getting cart using the cart_id present in the session
+        cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
         cart = Cart.objects.create(
-            cart_id = _cart_id(request), 
+            cart_id = _cart_id(request)
         )
     cart.save()
-    
+
     try:
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.quantity += 1
@@ -37,7 +37,6 @@ def add_cart(request, product_id):
             cart = cart,
         )
         cart_item.save()
-    
     return redirect('cart')
 
 def remove_cart(request, product_id):
@@ -51,7 +50,6 @@ def remove_cart(request, product_id):
         cart_item.delete()
     return redirect('cart')
 
-
 def remove_cart_item(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -59,42 +57,29 @@ def remove_cart_item(request, product_id):
     cart_item.delete()
     return redirect('cart')
 
-
-def cart(request, total=0, quantity=0, cart_item=None):
+def cart(request, total=0, quantity=0, cart_items=None):
     try:
         tax = 0
         grand_total = 0
-        shipping_flat_rate = 0
-        shipping_local_pickup = 0
-        if request.user.is_authenticated:
-            cart_items = CartItem.objects.filter(user=request.user)
-        else:
-            cart = Cart.objects.get(cart_id=_cart_id(request))
-            cart_items   = CartItem.objects.filter(cart=cart, is_active=True)
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
-            total += cart_item.product.price * cart_item.quantity
+            total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
-        
-        tax         = (17 * total)/100
-        shipping_flat_rate = 20000
-        shipping_local_pickup = 0
-        grand_total = total + tax + shipping_flat_rate
-        
-        
-
+        tax = round((18 * total) / 100, 2)
+        grand_total = round(total + tax, 2)
     except ObjectDoesNotExist:
-        total = quantity = cart_items = None
+        pass
 
     context = {
-        'total'                 : total,
-        'quantity'              : quantity,
-        'cart_items'            : cart_items,
-        'tax'                   : tax,
-        'grand_total'           : grand_total,
-        'shipping_flat_rate'    : shipping_flat_rate,
-        'shipping_local_pickup' : shipping_local_pickup,
+        'total': round(total, 2),
+        'quantity': quantity,
+        'cart_items': cart_items, 
+        'tax': tax,
+        'grand_total': grand_total,
     }
     return render(request, 'store/cart.html', context)
+
 
 
 @login_required(login_url='login')
@@ -115,29 +100,29 @@ def checkout(request, total=0, quantity=0, cart_item=None):
             quantity += cart_item.quantity
 
         # Calculate tax (if applicable)
-        tax = (17 * total) / 100
+        tax = round((18 * total) / 100, 2)
 
         # Determine selected shipping method (default to flat rate)
         shipping_method = request.POST.get('selectprice', 'flateRate')  # Default to 'flateRate'
 
         # Calculate grand total based on shipping method
         if shipping_method == 'flateRate':
-            grand_total = total + shipping_flat_rate
+            grand_total = total + shipping_flat_rate + tax
         elif shipping_method == 'localPickup':
-            grand_total = total + shipping_local_pickup
+            grand_total = total + shipping_local_pickup + tax
         else:
-            grand_total = total  # No shipping cost if none of the above is selected
+            grand_total = total + tax  # No shipping cost if none of the above is selected
 
     except ObjectDoesNotExist:
         total = quantity = cart_items = None
 
     context = {
-        'total': total,
+        'total': round(total, 2),
         'quantity': quantity,
         'cart_items': cart_items,
         'tax': tax,
-        'grand_total': grand_total,
-        'shipping_flat_rate': shipping_flat_rate,
-        'shipping_local_pickup': shipping_local_pickup,
+        'grand_total': round(grand_total, 2),
+        'shipping_flat_rate': round(shipping_flat_rate, 2),
+        'shipping_local_pickup': round(shipping_local_pickup, 2),
     }
     return render(request, 'store/checkout.html', context)
