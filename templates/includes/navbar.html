@@ -232,7 +232,7 @@
                             <small class="title text-muted">Welcome... {{ user.first_name|capfirst }}</small>
                             <div class="btnGroup">
                                 <a class="nav-link btn" href="{% url 'dashboard' %}">Dashboard</a>
-                                <a class="nav-link btn" href="{% url 'login' %}">Logout</a>
+                                <a class="nav-link btn" href="{% url 'logout' %}">Logout</a>
                             </div>
                         </li>
                         {%  endif %}
@@ -301,13 +301,13 @@
                 <div class="addItems">
                     <div class="incrementItems">
                         <div class="input-group qty-container">
-                            <a href="{% url 'remove_cart' cart_item.product_id %}" class="input-group-text qty-btn-minus">-</a>
+                            <a href="{% url 'remove_cart' cart_item.product_id cart_item.id %}" class="input-group-text qty-btn-minus">-</a>
                             <input type="text" class="form-control input-qty" placeholder="" value="{{ product_count }}">
                             <a href="{% url 'add_cart' cart_item.product_id %}" class="input-group-text qty-btn-plus">+</a>
                         </div>
                     </div>
                     <div class="removeItems">
-                        <a href="{% url 'remove_cart_item' cart_item.product_id %}" class="removeItem">REMOVE</a>
+                        <a href="{% url 'remove_cart' cart_item.product_id cart_item.id %}" class="removeItem">REMOVE</a>
                     </div>
                 </div>
                 </div>
@@ -350,7 +350,7 @@
                     <h6>Subtotal</h6>
                 </div>
                 <div class="priceTd text-end">
-                    <span class="inline-block" id="totalCost">Ugs  {{ grand_total }} </span>
+                    <span class="inline-block" id="totalCost">UGX  {{ grand_total }} </span>
                 </div>
                 </div>
                 <div class="priceTr">
@@ -358,7 +358,7 @@
                     <h6>Discount</h6>
                 </div>
                 <div class="priceTd text-end">
-                    <span>-Ugs 0</span>
+                    <span>-UGX 0</span>
                 </div>
                 </div>
             </div>
@@ -369,7 +369,7 @@
                     <h5>Total</h5>
                 </div>
                 <div class="priceTd text-end">
-                    <span>Ugs  {{ grand_total }} </span>
+                    <span>UGX  {{ grand_total }} </span>
                 </div>
                 </div>
             </div>

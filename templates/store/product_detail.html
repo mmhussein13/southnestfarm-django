@@ -18,6 +18,8 @@
    <!--banner end-->
    <!--Shop Single start-->
    <section class="w-100 clearfix shopSingle" id="shopSingle">
+      <form action="{% url 'add_cart' single_product.id %}" method="POST">
+         {% csrf_token %}
       <div class="container">
          <div class="shopSingleInner">
             <div class="row">
@@ -43,7 +45,7 @@
                            </div>
                            <div class="carousel-item">
                               <div class="carouselItem">
-                                 <img src="{% static 'images/img5.png' %}" alt="img" class="img-fluid">
+                                 <img src="{{ single_product.images.url }}" alt="img" class="img-fluid">
                               </div>
                            </div>
                         </div>
@@ -97,7 +99,7 @@
                   <div class="productDetail">
                      <h2>{{ single_product.product_name }}</h2>
                      <div class="productPrice">
-                        <ins>Ugs {{ single_product.price }}</ins>
+                        <ins>UGX {{ single_product.price }}</ins>
                      </div>
                      <div class="starGroup">
                         <img src="{% static 'images/icon/star-yellow.png' %}" alt="star-yellow" class="img-fluid">
@@ -127,7 +129,31 @@
                            <div class="progress-bar" style="width:10%"></div>
                         </div>
                         {% endif %}
-                     </div>
+                     </div><br>
+
+                     <!--***************************Product Variation Start**************-->
+                     <div class="row">
+                        <div class="item-option-select">
+                           <h6>Choose Color</h6>
+                              <select name="color" class="form-control" required>
+                                 <option value="" disabled selected>Select</option>
+                                 {% for i in single_product.variation_set.colors %}
+                                    <option value="{{ i.variation_value | lower}}">{{ i.variation_value }}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+                        </div><br>
+                        <div class="row">
+                           <div class="item-option-select">
+                              <h6>Choose Size</h6>
+                                 <select name="size" class="form-control">
+                                    <option value="" disabled selected>Select</option>
+                                 {% for i in single_product.variation_set.sizes %}
+                                    <option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+                                 {% endfor %}
+                                 </select>
+                              </div> 
+
                      <div class="productQty">
                         <div class="qty-container">
                            <button class="qty-btn-minus btn-light" type="button"><i class="fa fa-minus"></i></button>
@@ -138,26 +164,14 @@
                            {% if single_product.stock <= 0 %}
                            <h1 class="text-danger">Out of Stock</h1>
                            {% else %}
-                              {% if in_cart %}
-                              <!--If item added to cart-->
-                                 <a href="#" class="btnCustom5 btn btn-success" type="button">
-                                    <span>
-                                       Added to Cart <img src="{% static 'images/icon10.png' %}" alt="right" class="img-fluid fas fa-check">
-                                    </span>
-                                 </a>
-                                 <a href="{% url 'cart' %}" class="btnCustom5 btn-1 hover-slide-down" type="button">
-                                    <span>
-                                       View Cart <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
-                                    </span>
-                                 </a>
-                              {% else %}
-                           <a href="{% url 'add_cart' single_product.id %}" class="btnCustom5 btn-1 hover-slide-down" type="button">
+                           <button class="btnCustom5 btn-1 hover-slide-down" type="submit">
                               <span>
                                  Add to cart <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid">
                               </span>
-                           </a>
-                              {% endif %}
+                           </button>
                            {% endif %}
+                        </form>
+
                            <div class="likeProduct">
                               <a href="javascript:void(0);">
                                  <svg width="25" height="23" viewBox="0 0 25 23" fill="none"
@@ -207,7 +221,7 @@
                               <img src="{% static 'images/icon14.png' %}" alt="img" class="img-fluid">
                            </div>
                            <div class="guaranteedInfoTxt">
-                              <p>Free shipping on all orders over Ugs 500,000</p>
+                              <p>Free shipping on all orders over UGX 500,000</p>
                            </div>
                         </div>
                         <div class="guaranteedInfoItem">
@@ -425,7 +439,7 @@
                                           </div>
                                        </div>
                                     </div>
-                                    <button type="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Submit <img src="images/icon/icon-right.png" alt="right" class="img-fluid"></span></button>
+                                    <button type="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Submit <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span></button>
                                  </form>
                               </div>
                            </div>

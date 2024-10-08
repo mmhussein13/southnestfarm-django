@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -136,8 +137,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media'
 
 
-from django.contrib.messages import constants as messages
-
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
@@ -156,4 +155,3 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Password reset email configurations
 PASSWORD_RESET_TIMEOUT = 1800  # Link expires in 30 minutes
 DEFAULT_FROM_EMAIL = 'Southnest Support <support@southnest.com>'
-

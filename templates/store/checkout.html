@@ -78,7 +78,7 @@
                             <div class="col-md-6">
                                 <div class="commentFormGroup">
                                     <label for="country" class="form-label">Country</label>
-                                    <input type="text" class="form-control" id="country" name="website">
+                                    <input type="text" class="form-control" id="country" name="website" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -105,7 +105,6 @@
                             </div>
                         </div>
                         <button type="submit" name="submit" class="btnCustom5 btn-1 hover-slide-down"><span>Place Order <img src="{% static 'images/icon/icon-right.png' %}" alt="right" class="img-fluid"></span></button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -144,13 +143,13 @@
                                         </div>
                                     </div>
                                     </td>
-                                    <td><b>Ugs {{ cart_item.product.price }}</b></td>
+                                    <td><b>Ugx {{ cart_item.product.price }}</b></td>
                                     <td>
                                     <div class="qty-container">
                                         <label for="">{{ cart_item.quantity }}</label>
                                     </div>
                                     </td>
-                                    <td><span>Ugs {{ cart_item.sub_total }}</span></td>
+                                    <td><span>Ugx{{ cart_item.sub_total }}</span></td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -168,7 +167,7 @@
                     <p class="mb-0">Subtotal</p>
                 </div>
                 <div class="subTotalsNo">
-                    <span class="inline-block">Ugs {{ total }}</span>
+                    <span class="inline-block">Ugx{{ total }}</span>
                 </div>
             </div>
             <hr class="horizLine">
@@ -185,7 +184,7 @@
                     </div>
                 </div>
                 <div class="asideProductPrice">
-                    <span class="inline-block" id="flatRateCost">Ugs {{shipping_flat_rate}}</span>
+                    <span class="inline-block" id="flatRateCost">Ugx{{shipping_flat_rate}}</span>
                 </div>
             </div>
             <div class="subPrice">
@@ -194,7 +193,7 @@
                     <label for="localPickup"><span>Local Pickup</span></label>
                 </div>
                 <div class="asideProductPrice">
-                    <span class="inline-block" id="localPickupCost">Ugs {{ shipping_local_pickup }}</span>
+                    <span class="inline-block" id="localPickupCost">Ugx{{ shipping_local_pickup }}</span>
                 </div>
             </div>
             <hr class="horizLine">
@@ -211,7 +210,7 @@
                     <p class="mb-0">Totals</p>
                 </div>
                 <div class="subTotalsNo">
-                    <span class="inline-block" id="totalCost">Ugs {{ grand_total }}</span>
+                    <span class="inline-block" id="totalCost">Ugx{{ grand_total }}</span>
                 </div>
             </div>
             
@@ -259,6 +258,7 @@
                     <img src="{% static 'images/card.png' %}" alt="card" class="img-fluid">
                 </div>
             </div>
+        </form>
             </div>
         </div>
     </div>
