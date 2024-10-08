@@ -19,7 +19,7 @@ from carts.views import _cart_id
 from carts.models import Cart, CartItem
 from .models import Account
 from .forms import RegistrationForm
-
+import requests
 
 # Create your views here.
 def register(request):
@@ -119,7 +119,16 @@ def login(request):
 
             auth.login(request, user)
             messages.success(request, ' You are logged in.')
-            return redirect('dashboard')
+            url = request.META.get('HTTP_REFERER')
+            try:
+                query = requests.utils.urlparse(url).query
+                # next=/query/checkout/
+                params = dict(x.split('=') for x in query.split('&'))
+                if 'next' in params:
+                    nextPage = params['next']
+                    return redirect(nextPage)
+            except:
+                return redirect('dashboard')
         else:
             messages.error(request, 'Invalid login details. Please Try Again.')
             return redirect('login')

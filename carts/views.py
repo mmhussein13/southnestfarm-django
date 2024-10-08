@@ -140,10 +140,13 @@ def add_cart(request, product_id):
         return redirect('cart')
 
 def remove_cart(request, product_id, cart_item_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
     try:
-        cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
+        if request.user.is_authenticated:
+            cart_item = CartItem.objects.get(product=product, user=request.user, id=cart_item_id)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_item = CartItem.objects.get(product=product, cart=cart, id=cart_item_id)
         if cart_item.quantity > 1:
             cart_item.quantity -= 1
             cart_item.save()
@@ -154,9 +157,12 @@ def remove_cart(request, product_id, cart_item_id):
     return redirect('cart')
 
 def remove_cart_item(request, product_id):
-    cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(product=product, user=request.user)
+    else:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_item = CartItem.objects.get(product=product, cart=cart)
     cart_item.delete()
     return redirect('cart')
 
@@ -197,8 +203,11 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         shipping_local_pickup = 0   # Example local pickup rate
         total = 0
         quantity = 0
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, is_active=True)
 
         # Calculate total price and quantity
         for cart_item in cart_items:
@@ -223,12 +232,12 @@ def checkout(request, total=0, quantity=0, cart_item=None):
         total = quantity = cart_items = None
 
     context = {
-        'total': round(total, 2),
+        'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
         'tax': tax,
-        'grand_total': round(grand_total, 2),
-        'shipping_flat_rate': round(shipping_flat_rate, 2),
-        'shipping_local_pickup': round(shipping_local_pickup, 2),
+        'grand_total': grand_total,
+        'shipping_flat_rate': shipping_flat_rate,
+        'shipping_local_pickup': shipping_local_pickup,
     }
     return render(request, 'store/checkout.html', context)
